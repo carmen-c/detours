@@ -9,6 +9,7 @@
 #import "PlaceSearchManager.h"
 #import "Constants.h"
 #import <MapKit/MapKit.h>
+#import "Constants.h"
 
 @interface PlaceSearchManager ()
 
@@ -53,7 +54,7 @@
 + (NSURL *)constructURL2 {
     
     NSMutableArray *queries = [NSMutableArray array];
-    NSDictionary *queryDict = @{@"location" : @"49.282471,-123.106998", @"radius" : @"1000", @"type" : @"art_gallery", @"key" : @"AIzaSyBtvmE7F37ZTActpU0jIZs0HXoHjfahJsU"};
+    NSDictionary *queryDict = @{@"location" : @"49.282471,-123.106998", @"radius" : @"1000", @"type" : @"art_gallery", @"key" : kSuvanAPIKey};
     
     for (NSString *key in queryDict) {
         [queries addObject:[NSURLQueryItem queryItemWithName:key value:queryDict[key]]];
