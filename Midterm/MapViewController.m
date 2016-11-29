@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet GMSMapView *googleMapView;
 @property (nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) GMSPath *pathToDisplay;
+@property (nonatomic) CLLocationCoordinate2D endCoordinate;
 @end
 
 @implementation MapViewController
@@ -46,13 +47,13 @@
 #pragma mark - route
 
 -(void)findRoute{
-    CLLocation *secondLocation = [[CLLocation alloc] initWithLatitude:37.7422688 longitude:-122.4263441];
-    
-    NSArray *waypointsArray = @[@"via:", secondLocation];
+//    CLLocation *secondLocation = [[CLLocation alloc] initWithLatitude:37.7422688 longitude:-122.4263441];
+//    
+//    NSArray *waypointsArray = @[@"via:", secondLocation];
     
     OCDirectionsRequest *request = [OCDirectionsRequest requestWithOriginString:self.startDestination.text andDestinationString:self.endDestination.text];
     request.waypointsOptimise = YES;
-    request.waypoints = waypointsArray;
+//    request.waypoints = waypointsArray;
     
     OCDirectionsAPIClient *client = [OCDirectionsAPIClient new];
     [client directions:request response:^(OCDirectionsResponse *response, NSError *error) {
@@ -75,7 +76,23 @@
                 GMSMutablePath *path = [GMSMutablePath pathFromEncodedPath:encodedPath];
                 [self drawlineWithPath:path];
                 self.pathToDisplay = path;
+              //  [self setMarkerAt:response]
+                
+//                NSArray<NSDictionary *> *routes = response.dictionary[@"routes"];
+//                NSDictionary * route = routes.firstObject;
+//                NSArray<NSDictionary *> *legs = route[@"legs"];
+//                NSDictionary *deeeper = [[legs objectAtIndex:1]valueForKey:@"end_location"];
+//                NSString *endLocationLat = [deeeper valueForKey:@"lat"];
+//                NSString *endLocationLng = [deeeper valueForKey:@"lng"];
+//                
+//                double cEndLat = [endLocationLat doubleValue];
+//                double cEndLng = [endLocationLng doubleValue];
+//                
+//                CLLocationCoordinate2D endDestination = CLLocationCoordinate2DMake(cEndLat, cEndLng);
+//                endDestination = self.endCoordinate;
+//                [self setMarkerAt:self.endCoordinate];
             });
+            
         }
         
     }];
@@ -85,7 +102,7 @@
 
 
 
-#pragma mark - draw line
+#pragma mark - draw line and destination marker
 
 -(void)drawlineWithPath:(GMSPath *)path{
 //    GMSMutablePath *path = [GMSMutablePath path];
@@ -143,11 +160,11 @@
 
 
 #pragma mark - marker
-//
-//-(void) setMarkerAt:(CLLocation *)location {
+
+//-(void) setMarkerAt:(CLLocationCoordinate2D)location {
 //    GMSMarker *marker = [[GMSMarker alloc] init];
-//    marker.position = CLLocationCoordinate2DMake(current.coordinate.latitude, current.coordinate.longitude);
-//    marker.snippet = @"Your Current Location";
+//    marker.position = location;
+//    marker.snippet = @"Destination";
 //    marker.map = self.googleMapView;
 //}
 
