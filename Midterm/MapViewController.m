@@ -91,7 +91,7 @@
                 self.pathToDisplay = path;
                 
                 CLLocationCoordinate2D endDestination = CLLocationCoordinate2DMake(cEndLat, cEndLng);
-               // endDestination = self.endCoordinate;
+    
                 [self setEndMarkerAt:endDestination];
 
             });
