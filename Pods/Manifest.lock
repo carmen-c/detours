@@ -1,0 +1,23 @@
+PODS:
+  - GoogleMaps (2.1.1):
+    - GoogleMaps/Maps (= 2.1.1)
+  - GoogleMaps/Base (2.1.1)
+  - GoogleMaps/Maps (2.1.1):
+    - GoogleMaps/Base
+  - GooglePlaces (2.1.1):
+    - GoogleMaps/Base (= 2.1.1)
+  - OCGoogleDirectionsAPI (0.1.7)
+
+DEPENDENCIES:
+  - GoogleMaps
+  - GooglePlaces
+  - OCGoogleDirectionsAPI (~> 0.1.7)
+
+SPEC CHECKSUMS:
+  GoogleMaps: a5b5bbe47734e2443bde781a6aa64e69fdb6d785
+  GooglePlaces: 35636d86e5020cba3856eb988c09a5491de0a65a
+  OCGoogleDirectionsAPI: 03c35fbedfe01506b6270a94259969bc60d6f7ce
+
+PODFILE CHECKSUM: 4cd6fe059f27be642bb8b404b6950338b9c7eaae
+
+COCOAPODS: 1.1.1
