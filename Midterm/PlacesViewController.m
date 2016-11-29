@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.setOfDetours = [NSMutableSet set];
-    [self findSuggestedLocationsWithPath:self.parameters];
+//    [self findSuggestedLocationsWithPath:self.parameters];
 }
 
 
@@ -52,9 +52,8 @@
 - (NSArray *)getSearchPointCoordinates:(SearchParameters *)parameters {
     NSMutableArray *array = [NSMutableArray array];
     GMSPath *path = parameters.path;
-    float radius = [parameters.radius floatValue];
     
-    NSArray *filteredPoints = [SearchPointFilter filterPointsWithPath:path andRadius:radius];
+    NSArray *filteredPoints = [SearchPointFilter filterPointsWithPath:path];
     
     for (int i=0; i < filteredPoints.count; i++) {
         CLLocationCoordinate2D coordinate = [path coordinateAtIndex:i];

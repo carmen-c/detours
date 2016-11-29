@@ -10,8 +10,11 @@
 
 @implementation SearchPointFilter
 
-+(NSArray *)filterPointsWithPath:(GMSPath *)path andRadius:(float)radius {
++(NSArray *)filterPointsWithPath:(GMSPath *)path {
     NSMutableArray *array = [NSMutableArray array];
+    
+    float averageDistance;
+    
     
     return array;
 }
