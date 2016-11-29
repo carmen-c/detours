@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		147E81A21DED0E74001EB7C6 /* DetourPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 147E819D1DED0E74001EB7C6 /* DetourPlace.m */; };
+		147E81A31DED0E74001EB7C6 /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 147E819F1DED0E74001EB7C6 /* DownloadManager.m */; };
+		147E81A41DED0E74001EB7C6 /* PlaceSearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 147E81A11DED0E74001EB7C6 /* PlaceSearchManager.m */; };
 		1F8DAC471DEA798400632A0D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F8DAC461DEA798400632A0D /* CoreLocation.framework */; };
 		1FD9F1541DEA481D00F0C162 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD9F1531DEA481D00F0C162 /* main.m */; };
 		1FD9F1571DEA481D00F0C162 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD9F1561DEA481D00F0C162 /* AppDelegate.m */; };
@@ -22,6 +25,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		147E819C1DED0E74001EB7C6 /* DetourPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetourPlace.h; sourceTree = "<group>"; };
+		147E819D1DED0E74001EB7C6 /* DetourPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetourPlace.m; sourceTree = "<group>"; };
+		147E819E1DED0E74001EB7C6 /* DownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadManager.h; sourceTree = "<group>"; };
+		147E819F1DED0E74001EB7C6 /* DownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadManager.m; sourceTree = "<group>"; };
+		147E81A01DED0E74001EB7C6 /* PlaceSearchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceSearchManager.h; sourceTree = "<group>"; };
+		147E81A11DED0E74001EB7C6 /* PlaceSearchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceSearchManager.m; sourceTree = "<group>"; };
 		1B4FBB5A9B8F79710ABD2E4E /* Pods-Midterm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Midterm.release.xcconfig"; path = "Pods/Target Support Files/Pods-Midterm/Pods-Midterm.release.xcconfig"; sourceTree = "<group>"; };
 		1F8DAC461DEA798400632A0D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1FD9F14F1DEA481D00F0C162 /* Midterm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Midterm.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +68,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		147E81991DED0D71001EB7C6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1FD9F1551DEA481D00F0C162 /* AppDelegate.h */,
+				1FD9F1561DEA481D00F0C162 /* AppDelegate.m */,
+				147E819C1DED0E74001EB7C6 /* DetourPlace.h */,
+				147E819D1DED0E74001EB7C6 /* DetourPlace.m */,
+				147E819E1DED0E74001EB7C6 /* DownloadManager.h */,
+				147E819F1DED0E74001EB7C6 /* DownloadManager.m */,
+				147E81A01DED0E74001EB7C6 /* PlaceSearchManager.h */,
+				147E81A11DED0E74001EB7C6 /* PlaceSearchManager.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		147E819A1DED0D7E001EB7C6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1FD9F1581DEA481D00F0C162 /* MapViewController.h */,
+				1FD9F1591DEA481D00F0C162 /* MapViewController.m */,
+				1FD9F15B1DEA481D00F0C162 /* PlacesViewController.h */,
+				1FD9F15C1DEA481D00F0C162 /* PlacesViewController.m */,
+				1FD9F16C1DEA4F0E00F0C162 /* SearchViewController.h */,
+				1FD9F16D1DEA4F0E00F0C162 /* SearchViewController.m */,
+				1FD9F16F1DEA4F3600F0C162 /* MyTripViewController.h */,
+				1FD9F1701DEA4F3600F0C162 /* MyTripViewController.m */,
+				1FD9F1721DEA4F7700F0C162 /* DetailViewController.h */,
+				1FD9F1731DEA4F7700F0C162 /* DetailViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		147E819B1DED0D91001EB7C6 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				1FD9F1631DEA481D00F0C162 /* LaunchScreen.storyboard */,
+				1FD9F15E1DEA481D00F0C162 /* Main.storyboard */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
 		1FD9F1461DEA481D00F0C162 = {
 			isa = PBXGroup;
 			children = (
@@ -80,20 +130,9 @@
 		1FD9F1511DEA481D00F0C162 /* Midterm */ = {
 			isa = PBXGroup;
 			children = (
-				1FD9F1631DEA481D00F0C162 /* LaunchScreen.storyboard */,
-				1FD9F15E1DEA481D00F0C162 /* Main.storyboard */,
-				1FD9F1551DEA481D00F0C162 /* AppDelegate.h */,
-				1FD9F1561DEA481D00F0C162 /* AppDelegate.m */,
-				1FD9F1581DEA481D00F0C162 /* MapViewController.h */,
-				1FD9F1591DEA481D00F0C162 /* MapViewController.m */,
-				1FD9F15B1DEA481D00F0C162 /* PlacesViewController.h */,
-				1FD9F15C1DEA481D00F0C162 /* PlacesViewController.m */,
-				1FD9F16C1DEA4F0E00F0C162 /* SearchViewController.h */,
-				1FD9F16D1DEA4F0E00F0C162 /* SearchViewController.m */,
-				1FD9F16F1DEA4F3600F0C162 /* MyTripViewController.h */,
-				1FD9F1701DEA4F3600F0C162 /* MyTripViewController.m */,
-				1FD9F1721DEA4F7700F0C162 /* DetailViewController.h */,
-				1FD9F1731DEA4F7700F0C162 /* DetailViewController.m */,
+				147E81991DED0D71001EB7C6 /* Models */,
+				147E819B1DED0D91001EB7C6 /* UI */,
+				147E819A1DED0D7E001EB7C6 /* Controllers */,
 				1FD9F1521DEA481D00F0C162 /* Supporting Files */,
 			);
 			path = Midterm;
@@ -249,6 +288,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				147E81A21DED0E74001EB7C6 /* DetourPlace.m in Sources */,
+				147E81A41DED0E74001EB7C6 /* PlaceSearchManager.m in Sources */,
 				1FD9F15D1DEA481D00F0C162 /* PlacesViewController.m in Sources */,
 				1FD9F1571DEA481D00F0C162 /* AppDelegate.m in Sources */,
 				1FD9F16E1DEA4F0E00F0C162 /* SearchViewController.m in Sources */,
@@ -256,6 +297,7 @@
 				1FD9F15A1DEA481D00F0C162 /* MapViewController.m in Sources */,
 				1FD9F1541DEA481D00F0C162 /* main.m in Sources */,
 				1FD9F1741DEA4F7700F0C162 /* DetailViewController.m in Sources */,
+				147E81A31DED0E74001EB7C6 /* DownloadManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
