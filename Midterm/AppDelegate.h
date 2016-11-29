@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GoogleMaps/GoogleMaps.h>
+#import <OCGoogleDirectionsAPI/OCGoogleDirectionsAPI.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

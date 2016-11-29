@@ -15,7 +15,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *startDestination;
 @property (weak, nonatomic) IBOutlet UITextField *endDestination;
 @property (weak, nonatomic) NSMutableSet *setOfDetours;
-//@property (nonatomic) OCDirectionsRequest *directionRequest;
 
 @property (weak, nonatomic) IBOutlet GMSMapView *googleMapView;
 @property (nonatomic) CLLocationManager *locationManager;
@@ -32,9 +31,7 @@
 #pragma mark - buttons
 
 - (IBAction)findButton:(id)sender {
-   // self.directionRequest = [[OCDirectionsRequest alloc]init];
     [self findRoute];
-    
     [self.startDestination resignFirstResponder];
     [self.endDestination resignFirstResponder];
 }
@@ -75,12 +72,33 @@
                 }
                 
                 NSArray *arrayOfURLs = [PlaceSearchManager constructURLWithLocations:arrayOfCoordinates];
-                for (NSURL *url in arrayOfURLs) {
+                NSMutableArray *URLsToFetch = [NSMutableArray array];
+                for (int i = 0; i < arrayOfURLs.count; i += 10) {
+                    [URLsToFetch addObject:arrayOfURLs[i]];
+                }
+                
+                __block int counter = 0;
+                for (NSURL *url in URLsToFetch) {
                     [DownloadManager getPlacesJson:url completion:^(NSSet *setOfPlaces) {
                         [self.setOfDetours setByAddingObjectsFromSet:setOfPlaces];
+                        
+                        counter++;
+                        if (counter >= URLsToFetch.count) {
+                            // Completed fetch
+                        }
                     }];
                 }
                 
+//                for (NSURL *url in arrayOfURLs) {
+//                    
+//                    NSInteger index = [arrayOfURLs indexOfObject:object];
+//                    if(index%10 == 0){
+//                        [DownloadManager getPlacesJson:url completion:^(NSSet *setOfPlaces) {
+//                            [self.setOfDetours setByAddingObjectsFromSet:setOfPlaces];
+//                        }];
+//                    }
+//                }
+                NSLog(@"stop");
             });
         }
         
