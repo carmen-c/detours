@@ -11,6 +11,5 @@
 @interface PlaceSearchManager : NSObject
 
 + (NSArray *)constructURLWithLocations:(NSArray *)arrayOfLocations;
-+ (NSURL *)constructURL2;
 
 @end

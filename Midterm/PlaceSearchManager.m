@@ -51,24 +51,4 @@
     return components.URL;
 }
 
-+ (NSURL *)constructURL2 {
-    
-    NSMutableArray *queries = [NSMutableArray array];
-    NSDictionary *queryDict = @{@"location" : @"49.282471,-123.106998", @"radius" : @"1000", @"type" : @"art_gallery", @"key" : kSuvanAPIKey};
-    
-    for (NSString *key in queryDict) {
-        [queries addObject:[NSURLQueryItem queryItemWithName:key value:queryDict[key]]];
-    }
-    
-    NSURLComponents *components = [[NSURLComponents alloc] init];
-    components.scheme = @"https";
-    components.host = @"maps.googleapis.com";
-    components.path = @"/maps/api/place/nearbysearch/json";
-    components.queryItems = queries;
-    
-    NSLog(@"%@", components.URL);
-    
-    return components.URL;
-}
-
 @end
