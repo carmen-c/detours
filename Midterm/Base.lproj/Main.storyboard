@@ -339,6 +339,16 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X7t-ca-N3b">
                                 <rect key="frame" x="0.0" y="74" width="375" height="544"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="placesOfInterestCell" id="Tdw-bP-sXJ">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tdw-bP-sXJ" id="25r-WB-LQm">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HNr-sE-301">
                                 <rect key="frame" x="329" y="44" width="30" height="30"/>
@@ -368,7 +378,7 @@
                     <connections>
                         <outlet property="instructionsLabel" destination="R7w-4x-wMC" id="cQ0-4T-Ymi"/>
                         <outlet property="tableView" destination="X7t-ca-N3b" id="HGQ-Vl-wqv"/>
-                        <segue destination="8rJ-Kc-sve" kind="show" id="Cde-vK-9k6"/>
+                        <segue destination="8rJ-Kc-sve" kind="show" identifier="showListOfDetours" id="Cde-vK-9k6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nQI-LA-TYt" userLabel="First Responder" sceneMemberID="firstResponder"/>
