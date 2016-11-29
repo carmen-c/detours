@@ -27,8 +27,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.setOfDetours = [NSMutableSet set];
-    [self createLocationManager];
     self.pathToDisplay = nil;
+    
+    if (self.locationManager == nil) {
+        [self createLocationManager];
+    }
 }
 
 #pragma mark - buttons
@@ -72,25 +75,25 @@
             NSDictionary * route = routes.firstObject;
             NSString * encodedPath = route[@"overview_polyline"][@"points"];
             
+            NSArray<NSDictionary *> *legs = route[@"legs"];
+            NSDictionary *leg = legs.firstObject;
+            NSDictionary *deeeper = [leg valueForKey:@"end_location"];
+            NSString *endLocationLat = [deeeper valueForKey:@"lat"];
+            NSString *endLocationLng = [deeeper valueForKey:@"lng"];
+            
+            double cEndLat = [endLocationLat doubleValue];
+            double cEndLng = [endLocationLng doubleValue];
+
+            
             dispatch_async(dispatch_get_main_queue(), ^{
                 GMSMutablePath *path = [GMSMutablePath pathFromEncodedPath:encodedPath];
                 [self drawlineWithPath:path];
                 self.pathToDisplay = path;
-              //  [self setMarkerAt:response]
                 
-//                NSArray<NSDictionary *> *routes = response.dictionary[@"routes"];
-//                NSDictionary * route = routes.firstObject;
-//                NSArray<NSDictionary *> *legs = route[@"legs"];
-//                NSDictionary *deeeper = [[legs objectAtIndex:1]valueForKey:@"end_location"];
-//                NSString *endLocationLat = [deeeper valueForKey:@"lat"];
-//                NSString *endLocationLng = [deeeper valueForKey:@"lng"];
-//                
-//                double cEndLat = [endLocationLat doubleValue];
-//                double cEndLng = [endLocationLng doubleValue];
-//                
-//                CLLocationCoordinate2D endDestination = CLLocationCoordinate2DMake(cEndLat, cEndLng);
-//                endDestination = self.endCoordinate;
-//                [self setMarkerAt:self.endCoordinate];
+                CLLocationCoordinate2D endDestination = CLLocationCoordinate2DMake(cEndLat, cEndLng);
+               // endDestination = self.endCoordinate;
+                [self setEndMarkerAt:endDestination];
+
             });
             
         }
@@ -161,12 +164,13 @@
 
 #pragma mark - marker
 
-//-(void) setMarkerAt:(CLLocationCoordinate2D)location {
-//    GMSMarker *marker = [[GMSMarker alloc] init];
-//    marker.position = location;
-//    marker.snippet = @"Destination";
-//    marker.map = self.googleMapView;
-//}
+-(void) setEndMarkerAt:(CLLocationCoordinate2D)location {
+    GMSMarker *marker = [[GMSMarker alloc] init];
+    marker.position = location;
+    marker.snippet = @"Destination";
+    marker.appearAnimation = kGMSMarkerAnimationPop;
+    marker.map = self.googleMapView;
+}
 
 
 @end
