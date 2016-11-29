@@ -13,14 +13,11 @@
 
 @interface PlaceSearchManager ()
 
-@property (nonatomic, assign) float latitude;
-@property (nonatomic, assign) float longitude;
-
 @end
 
 @implementation PlaceSearchManager
 
-+(NSArray *)constructURLWithLocations:(NSArray *)arrayOfLocations {
++ (NSArray *)constructURLWithLocations:(NSArray *)arrayOfLocations andSearchParameters:(SearchParameters *)parameters {
     NSMutableArray<NSURL *> *arrayOfURLs = [NSMutableArray array];
     
     for (NSString *coordinateString in arrayOfLocations) {

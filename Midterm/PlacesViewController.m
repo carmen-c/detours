@@ -9,6 +9,8 @@
 #import "PlacesViewController.h"
 #import "PlaceSearchManager.h"
 #import "DownloadManager.h"
+#import "DetourPlace.h"
+#import "SearchPointFilter.h"
 
 @interface PlacesViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -21,18 +23,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.setOfDetours = [NSMutableSet set];
+    [self findSuggestedLocationsWithPath:self.parameters];
 }
 
 
--(void)findSuggestedLocationsWithPath:(GMSPath *)path{
-    NSMutableArray *arrayOfCoordinates = [NSMutableArray array];
-    for (int i=0; i < path.count; i++) {
-        CLLocationCoordinate2D coordinate = [path coordinateAtIndex:i];
-        NSString *coordinateString = [NSString stringWithFormat:@"%@,%@", @(coordinate.latitude), @(coordinate.longitude)];
-        [arrayOfCoordinates addObject:coordinateString];
-    }
+-(void)findSuggestedLocationsWithPath:(SearchParameters *)parameters{
+    NSArray *arrayOfCoordinates = [self getSearchPointCoordinates:parameters];
     
-    NSArray *arrayOfURLs = [PlaceSearchManager constructURLWithLocations:arrayOfCoordinates];
+    NSArray *arrayOfURLs = [PlaceSearchManager constructURLWithLocations:arrayOfCoordinates andSearchParameters:parameters];
     NSMutableArray *URLsToFetch = [NSMutableArray array];
     for (int i = 0; i < arrayOfURLs.count; i += 10) {
         [URLsToFetch addObject:arrayOfURLs[i]];
@@ -51,6 +49,21 @@
     }
 }
 
+- (NSArray *)getSearchPointCoordinates:(SearchParameters *)parameters {
+    NSMutableArray *array = [NSMutableArray array];
+    GMSPath *path = parameters.path;
+    float radius = [parameters.radius floatValue];
+    
+    NSArray *filteredPoints = [SearchPointFilter filterPointsWithPath:path andRadius:radius];
+    
+    for (int i=0; i < filteredPoints.count; i++) {
+        CLLocationCoordinate2D coordinate = [path coordinateAtIndex:i];
+        NSString *coordinateString = [NSString stringWithFormat:@"%@,%@", @(coordinate.latitude), @(coordinate.longitude)];
+        [array addObject:coordinateString];
+    }
+    
+    return array;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
