@@ -32,7 +32,12 @@
 #pragma mark - buttons
 
 - (IBAction)findButton:(id)sender {
-    [self findRoute];
+    if (self.pathToDisplay == nil) {
+        [self findRoute];
+    }else {
+        [self drawlineWithPath:self.pathToDisplay];
+    }
+    
     [self.startDestination resignFirstResponder];
     [self.endDestination resignFirstResponder];
 }
