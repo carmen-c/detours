@@ -7,6 +7,7 @@
 //
 
 #import "PreferencesViewController.h"
+#import "PlacesViewController.h"
 #import "SearchParameters.h"
 
 @interface PreferencesViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -15,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSDictionary *placesOfInterest;
 @property (nonatomic, strong) NSMutableArray *selectedPlaces;
+@property (weak, nonatomic) IBOutlet UILabel *warningLabel;
 @end
 
 @implementation PreferencesViewController
@@ -27,6 +29,7 @@ static NSString * const kPlacesOfInterestCellIdentifier = @"placesOfInterestCell
     self.selectedPlaces = [NSMutableArray array];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.warningLabel.hidden = YES;
     self.placesOfInterest = @{@"Amusement Parks" : @"amusement_park",
                               @"Aquariums" : @"aquarium",
                               @"Art Galleries" : @"art_gallery",
@@ -81,19 +84,29 @@ static NSString * const kPlacesOfInterestCellIdentifier = @"placesOfInterestCell
 # pragma mark - Segues
 
 - (IBAction)findButton:(UIButton *)sender {
-    [self performSegueWithIdentifier:kShowListOfDetoursIdentifier sender:self];
+    if (self.selectedPlaces.count > 0) {
+        self.warningLabel.hidden = YES;
+        [self performSegueWithIdentifier:kShowListOfDetoursIdentifier sender:self];
+    } else {
+        self.warningLabel.hidden = NO;
+    }
+    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:kShowListOfDetoursIdentifier]) {
         SearchParameters *parameters = [[SearchParameters alloc] init];
         parameters.placeTypeArray = [self addSearchablePlaceTypes];
+        PlacesViewController *destinationVC = segue.destinationViewController;
+        destinationVC.parameters = parameters;
     }
 }
 
+#pragma mark - General Methods
+
 - (NSArray *)addSearchablePlaceTypes {
     NSMutableArray *searchableArray = [NSMutableArray array];
-    NSArray *arrayOfKeys = [self.placesOfInterest allKeys];
+    NSArray *arrayOfKeys = self.selectedPlaces;
     arrayOfKeys = [arrayOfKeys sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     for (NSString *key in arrayOfKeys) {
         NSString *valueForSearch = self.placesOfInterest[key];
