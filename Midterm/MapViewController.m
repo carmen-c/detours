@@ -88,16 +88,6 @@
                         }
                     }];
                 }
-                
-//                for (NSURL *url in arrayOfURLs) {
-//                    
-//                    NSInteger index = [arrayOfURLs indexOfObject:object];
-//                    if(index%10 == 0){
-//                        [DownloadManager getPlacesJson:url completion:^(NSSet *setOfPlaces) {
-//                            [self.setOfDetours setByAddingObjectsFromSet:setOfPlaces];
-//                        }];
-//                    }
-//                }
                 NSLog(@"stop");
             });
         }
