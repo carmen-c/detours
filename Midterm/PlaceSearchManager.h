@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SearchParameters.h"
 
 @interface PlaceSearchManager : NSObject
 
-+ (NSArray *)constructURLWithLocations:(NSArray *)arrayOfLocations;
++ (NSArray *)constructURLWithLocations:(NSArray *)arrayOfLocations andSearchParameters:(SearchParameters *)parameters;
 
 @end
