@@ -27,6 +27,7 @@
     [super viewDidLoad];
     self.setOfDetours = [NSMutableSet set];
     [self createLocationManager];
+    self.pathToDisplay = nil;
 }
 
 #pragma mark - buttons
@@ -66,7 +67,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 GMSMutablePath *path = [GMSMutablePath pathFromEncodedPath:encodedPath];
                 [self drawlineWithPath:path];
-                [self findSuggestedLocationsWithPath:path];
+                self.pathToDisplay = path;
             });
         }
         

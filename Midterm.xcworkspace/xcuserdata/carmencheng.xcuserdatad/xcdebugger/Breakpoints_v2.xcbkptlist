@@ -25,7 +25,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "89"
             endingLineNumber = "89"
-            landmarkName = "-findRoute"
+            landmarkName = "-drawlineWithPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
