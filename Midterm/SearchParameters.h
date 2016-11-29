@@ -7,10 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <GoogleMaps/GoogleMaps.h>
 
 @interface SearchParameters : NSObject
 
 @property (nonatomic, strong) NSArray *placeTypeArray;
 @property (nonatomic, strong) NSString *radius;
+@property (nonatomic, strong) GMSPath *path;
 
 @end

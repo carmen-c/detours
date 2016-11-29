@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"\nParameters: %@", self.parameters.placeTypeArray);
+    self.setOfDetours = [NSMutableSet set];
 }
 
 
