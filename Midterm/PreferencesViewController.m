@@ -7,6 +7,7 @@
 //
 
 #import "PreferencesViewController.h"
+#import "SearchParameters.h"
 
 @interface PreferencesViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -38,6 +39,10 @@ static NSString * const kPlacesOfInterestCellIdentifier = @"placesOfInterestCell
                               @"Zoos" : @"zoo"};
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
 #pragma mark - TableView
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -56,8 +61,6 @@ static NSString * const kPlacesOfInterestCellIdentifier = @"placesOfInterestCell
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-    
-    NSLog(@"Selected places: %@", self.selectedPlaces);
     
     return cell;
 }
@@ -83,15 +86,20 @@ static NSString * const kPlacesOfInterestCellIdentifier = @"placesOfInterestCell
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:kShowListOfDetoursIdentifier]) {
-        // set places of interest on destination VC
+        SearchParameters *parameters = [[SearchParameters alloc] init];
+        parameters.placeTypeArray = [self addSearchablePlaceTypes];
     }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSArray *)addSearchablePlaceTypes {
+    NSMutableArray *searchableArray = [NSMutableArray array];
+    NSArray *arrayOfKeys = [self.placesOfInterest allKeys];
+    arrayOfKeys = [arrayOfKeys sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    for (NSString *key in arrayOfKeys) {
+        NSString *valueForSearch = self.placesOfInterest[key];
+        [searchableArray addObject:valueForSearch];
+    }
+    return searchableArray;
 }
-
-
 
 @end

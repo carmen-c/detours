@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <GoogleMaps/GoogleMaps.h>
 #import <CoreLocation/CoreLocation.h>
+#import "SearchParameters.h"
 
 @interface PlacesViewController : UIViewController
+
+@property (nonatomic, strong) SearchParameters *parameters;
 
 @end
 
