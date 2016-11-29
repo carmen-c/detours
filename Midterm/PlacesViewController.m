@@ -12,6 +12,7 @@
 
 @interface PlacesViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableSet *setOfDetours;
 
 @end
 
