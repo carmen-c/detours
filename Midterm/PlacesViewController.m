@@ -10,6 +10,7 @@
 #import "PlaceSearchManager.h"
 #import "DownloadManager.h"
 #import "DetourPlace.h"
+#import "SearchPointFilter.h"
 
 @interface PlacesViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -53,7 +54,9 @@
     GMSPath *path = parameters.path;
     float radius = [parameters.radius floatValue];
     
-    for (int i=0; i < path.count; i++) {
+    NSArray *filteredPoints = [SearchPointFilter filterPointsWithPath:path andRadius:radius];
+    
+    for (int i=0; i < filteredPoints.count; i++) {
         CLLocationCoordinate2D coordinate = [path coordinateAtIndex:i];
         NSString *coordinateString = [NSString stringWithFormat:@"%@,%@", @(coordinate.latitude), @(coordinate.longitude)];
         [array addObject:coordinateString];
