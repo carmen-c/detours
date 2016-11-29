@@ -9,6 +9,7 @@
 #import "PlacesViewController.h"
 
 @interface PlacesViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
