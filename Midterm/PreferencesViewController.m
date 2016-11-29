@@ -23,7 +23,9 @@ static NSString * const kPlacesOfInterestCellIdentifier = @"placesOfInterestCell
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.selectedPlaces = @[];
+    self.selectedPlaces = [NSMutableArray array];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     self.placesOfInterest = @{@"Amusement Parks" : @"amusement_park",
                               @"Aquariums" : @"aquarium",
                               @"Art Galleries" : @"art_gallery",
@@ -44,10 +46,18 @@ static NSString * const kPlacesOfInterestCellIdentifier = @"placesOfInterestCell
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kPlacesOfInterestCellIdentifier];
-    
     NSArray *arrayOfKeys = [self.placesOfInterest allKeys];
     arrayOfKeys = [arrayOfKeys sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-    cell.textLabel.text = arrayOfKeys[indexPath.row];
+    NSString *cellTitle = arrayOfKeys[indexPath.row];
+    cell.textLabel.text = cellTitle;
+    
+    if ([self.selectedPlaces containsObject:cellTitle]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
+    NSLog(@"Selected places: %@", self.selectedPlaces);
     
     return cell;
 }
@@ -56,13 +66,13 @@ static NSString * const kPlacesOfInterestCellIdentifier = @"placesOfInterestCell
     NSArray *arrayOfKeys = [self.placesOfInterest allKeys];
     arrayOfKeys = [arrayOfKeys sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     NSString *selectedKey = arrayOfKeys[indexPath.row];
-    NSString *selectedValue = self.placesOfInterest[selectedKey];
     
-    if ([self.selectedPlaces containsObject:selectedValue]) {
-        [self.selectedPlaces removeObject:selectedValue];
+    if ([self.selectedPlaces containsObject:selectedKey]) {
+        [self.selectedPlaces removeObject:selectedKey];
     } else {
-        [self.selectedPlaces addObject:selectedValue];
+        [self.selectedPlaces addObject:selectedKey];
     }
+    [self.tableView reloadData];
 }
 
 # pragma mark - Segues
