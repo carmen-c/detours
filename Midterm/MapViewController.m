@@ -46,7 +46,14 @@
 #pragma mark - route
 
 -(void)findRoute{
+    CLLocation *secondLocation = [[CLLocation alloc] initWithLatitude:37.7422688 longitude:-122.4263441];
+    
+    NSArray *waypointsArray = @[@"via:", secondLocation];
+    
     OCDirectionsRequest *request = [OCDirectionsRequest requestWithOriginString:self.startDestination.text andDestinationString:self.endDestination.text];
+    request.waypointsOptimise = YES;
+    request.waypoints = waypointsArray;
+    
     OCDirectionsAPIClient *client = [OCDirectionsAPIClient new];
     [client directions:request response:^(OCDirectionsResponse *response, NSError *error) {
 
