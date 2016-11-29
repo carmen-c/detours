@@ -7,6 +7,8 @@
 //
 
 #import "PlacesViewController.h"
+#import "PlaceSearchManager.h"
+#import "DownloadManager.h"
 
 @interface PlacesViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -18,6 +20,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+
+-(void)findSuggestedLocationsWithPath:(GMSPath *)path{
+    NSMutableArray *arrayOfCoordinates = [NSMutableArray array];
+    for (int i=0; i < path.count; i++) {
+        CLLocationCoordinate2D coordinate = [path coordinateAtIndex:i];
+        NSString *coordinateString = [NSString stringWithFormat:@"%@,%@", @(coordinate.latitude), @(coordinate.longitude)];
+        [arrayOfCoordinates addObject:coordinateString];
+    }
+    
+    NSArray *arrayOfURLs = [PlaceSearchManager constructURLWithLocations:arrayOfCoordinates];
+    NSMutableArray *URLsToFetch = [NSMutableArray array];
+    for (int i = 0; i < arrayOfURLs.count; i += 10) {
+        [URLsToFetch addObject:arrayOfURLs[i]];
+    }
+    
+    __block int counter = 0;
+    for (NSURL *url in URLsToFetch) {
+        [DownloadManager getPlacesJson:url completion:^(NSSet *setOfPlaces) {
+            [self.setOfDetours setByAddingObjectsFromSet:setOfPlaces];
+            
+            counter++;
+            if (counter >= URLsToFetch.count) {
+                // Completed fetch
+            }
+        }];
+    }
 }
 
 

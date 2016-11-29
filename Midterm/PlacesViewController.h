@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GoogleMaps/GoogleMaps.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface PlacesViewController : UIViewController
-
 
 @end
 

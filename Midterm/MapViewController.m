@@ -67,32 +67,6 @@
                 GMSMutablePath *path = [GMSMutablePath pathFromEncodedPath:encodedPath];
                 [self drawlineWithPath:path];
                 [self findSuggestedLocationsWithPath:path];
-                
-//                NSMutableArray *arrayOfCoordinates = [NSMutableArray array];
-//                for (int i=0; i < path.count; i++) {
-//                    CLLocationCoordinate2D coordinate = [path coordinateAtIndex:i];
-//                    NSString *coordinateString = [NSString stringWithFormat:@"%@,%@", @(coordinate.latitude), @(coordinate.longitude)];
-//                    [arrayOfCoordinates addObject:coordinateString];
-//                }
-//                
-//                NSArray *arrayOfURLs = [PlaceSearchManager constructURLWithLocations:arrayOfCoordinates];
-//                NSMutableArray *URLsToFetch = [NSMutableArray array];
-//                for (int i = 0; i < arrayOfURLs.count; i += 10) {
-//                    [URLsToFetch addObject:arrayOfURLs[i]];
-//                }
-//                
-//                __block int counter = 0;
-//                for (NSURL *url in URLsToFetch) {
-//                    [DownloadManager getPlacesJson:url completion:^(NSSet *setOfPlaces) {
-//                        [self.setOfDetours setByAddingObjectsFromSet:setOfPlaces];
-//                        
-//                        counter++;
-//                        if (counter >= URLsToFetch.count) {
-//                            // Completed fetch
-//                        }
-//                    }];
-//                }
-                NSLog(@"stop");
             });
         }
         
@@ -101,32 +75,7 @@
 
 #pragma mark - find suggested locations
 
--(void)findSuggestedLocationsWithPath:(GMSPath *)path{
-    NSMutableArray *arrayOfCoordinates = [NSMutableArray array];
-    for (int i=0; i < path.count; i++) {
-        CLLocationCoordinate2D coordinate = [path coordinateAtIndex:i];
-        NSString *coordinateString = [NSString stringWithFormat:@"%@,%@", @(coordinate.latitude), @(coordinate.longitude)];
-        [arrayOfCoordinates addObject:coordinateString];
-    }
-    
-    NSArray *arrayOfURLs = [PlaceSearchManager constructURLWithLocations:arrayOfCoordinates];
-    NSMutableArray *URLsToFetch = [NSMutableArray array];
-    for (int i = 0; i < arrayOfURLs.count; i += 10) {
-        [URLsToFetch addObject:arrayOfURLs[i]];
-    }
-    
-    __block int counter = 0;
-    for (NSURL *url in URLsToFetch) {
-        [DownloadManager getPlacesJson:url completion:^(NSSet *setOfPlaces) {
-            [self.setOfDetours setByAddingObjectsFromSet:setOfPlaces];
-            
-            counter++;
-            if (counter >= URLsToFetch.count) {
-                // Completed fetch
-            }
-        }];
-    }
-}
+
 
 #pragma mark - draw line
 
