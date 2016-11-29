@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "Constants.h"
+#import <GoogleMaps/GoogleMaps.h>
+#import <OCGoogleDirectionsAPI/OCGoogleDirectionsAPI.h>
 
 @interface AppDelegate ()
 
@@ -16,7 +19,10 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    [GMSServices provideAPIKey:kCarmenAPIKey];
+    [OCDirectionsAPIClient provideAPIKey:kCarmenAPIKey];
+    
     return YES;
 }
 
