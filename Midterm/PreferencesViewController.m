@@ -23,6 +23,7 @@ static NSString * const kPlacesOfInterestCellIdentifier = @"placesOfInterestCell
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.selectedPlaces = @[];
     self.placesOfInterest = @{@"Amusement Parks" : @"amusement_park",
                               @"Aquariums" : @"aquarium",
                               @"Art Galleries" : @"art_gallery",
@@ -45,12 +46,24 @@ static NSString * const kPlacesOfInterestCellIdentifier = @"placesOfInterestCell
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kPlacesOfInterestCellIdentifier];
     
     NSArray *arrayOfKeys = [self.placesOfInterest allKeys];
-    
+    arrayOfKeys = [arrayOfKeys sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     cell.textLabel.text = arrayOfKeys[indexPath.row];
     
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray *arrayOfKeys = [self.placesOfInterest allKeys];
+    arrayOfKeys = [arrayOfKeys sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    NSString *selectedKey = arrayOfKeys[indexPath.row];
+    NSString *selectedValue = self.placesOfInterest[selectedKey];
+    
+    if ([self.selectedPlaces containsObject:selectedValue]) {
+        [self.selectedPlaces removeObject:selectedValue];
+    } else {
+        [self.selectedPlaces addObject:selectedValue];
+    }
+}
 
 # pragma mark - Segues
 
