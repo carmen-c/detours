@@ -18,6 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet GMSMapView *googleMapView;
 @property (nonatomic) CLLocationManager *locationManager;
+@property (nonatomic) GMSPath *pathToDisplay;
 @end
 
 @implementation MapViewController
