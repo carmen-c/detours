@@ -58,41 +58,84 @@
             NSString * encodedPath = route[@"overview_polyline"][@"points"];
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                GMSPath *path = [GMSPath pathFromEncodedPath:encodedPath];
-                GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
+                GMSMutablePath *path = [GMSMutablePath pathFromEncodedPath:encodedPath];
+                [self drawlineWithPath:path];
+                [self findSuggestedLocationsWithPath:path];
                 
-                polyline.map = self.googleMapView;
-                polyline.geodesic = YES;
-                polyline.strokeWidth = 5.f;
-                NSMutableArray *arrayOfCoordinates = [NSMutableArray array];
-                for (int i=0; i < path.count; i++) {
-                    CLLocationCoordinate2D coordinate = [path coordinateAtIndex:i];
-                    NSString *coordinateString = [NSString stringWithFormat:@"%@,%@", @(coordinate.latitude), @(coordinate.longitude)];
-                    [arrayOfCoordinates addObject:coordinateString];
-                }
-                
-                NSArray *arrayOfURLs = [PlaceSearchManager constructURLWithLocations:arrayOfCoordinates];
-                NSMutableArray *URLsToFetch = [NSMutableArray array];
-                for (int i = 0; i < arrayOfURLs.count; i += 10) {
-                    [URLsToFetch addObject:arrayOfURLs[i]];
-                }
-                
-                __block int counter = 0;
-                for (NSURL *url in URLsToFetch) {
-                    [DownloadManager getPlacesJson:url completion:^(NSSet *setOfPlaces) {
-                        [self.setOfDetours setByAddingObjectsFromSet:setOfPlaces];
-                        
-                        counter++;
-                        if (counter >= URLsToFetch.count) {
-                            // Completed fetch
-                        }
-                    }];
-                }
+//                NSMutableArray *arrayOfCoordinates = [NSMutableArray array];
+//                for (int i=0; i < path.count; i++) {
+//                    CLLocationCoordinate2D coordinate = [path coordinateAtIndex:i];
+//                    NSString *coordinateString = [NSString stringWithFormat:@"%@,%@", @(coordinate.latitude), @(coordinate.longitude)];
+//                    [arrayOfCoordinates addObject:coordinateString];
+//                }
+//                
+//                NSArray *arrayOfURLs = [PlaceSearchManager constructURLWithLocations:arrayOfCoordinates];
+//                NSMutableArray *URLsToFetch = [NSMutableArray array];
+//                for (int i = 0; i < arrayOfURLs.count; i += 10) {
+//                    [URLsToFetch addObject:arrayOfURLs[i]];
+//                }
+//                
+//                __block int counter = 0;
+//                for (NSURL *url in URLsToFetch) {
+//                    [DownloadManager getPlacesJson:url completion:^(NSSet *setOfPlaces) {
+//                        [self.setOfDetours setByAddingObjectsFromSet:setOfPlaces];
+//                        
+//                        counter++;
+//                        if (counter >= URLsToFetch.count) {
+//                            // Completed fetch
+//                        }
+//                    }];
+//                }
                 NSLog(@"stop");
             });
         }
         
     }];
+}
+
+#pragma mark - find suggested locations
+
+-(void)findSuggestedLocationsWithPath:(GMSPath *)path{
+    NSMutableArray *arrayOfCoordinates = [NSMutableArray array];
+    for (int i=0; i < path.count; i++) {
+        CLLocationCoordinate2D coordinate = [path coordinateAtIndex:i];
+        NSString *coordinateString = [NSString stringWithFormat:@"%@,%@", @(coordinate.latitude), @(coordinate.longitude)];
+        [arrayOfCoordinates addObject:coordinateString];
+    }
+    
+    NSArray *arrayOfURLs = [PlaceSearchManager constructURLWithLocations:arrayOfCoordinates];
+    NSMutableArray *URLsToFetch = [NSMutableArray array];
+    for (int i = 0; i < arrayOfURLs.count; i += 10) {
+        [URLsToFetch addObject:arrayOfURLs[i]];
+    }
+    
+    __block int counter = 0;
+    for (NSURL *url in URLsToFetch) {
+        [DownloadManager getPlacesJson:url completion:^(NSSet *setOfPlaces) {
+            [self.setOfDetours setByAddingObjectsFromSet:setOfPlaces];
+            
+            counter++;
+            if (counter >= URLsToFetch.count) {
+                // Completed fetch
+            }
+        }];
+    }
+}
+
+#pragma mark - draw line
+
+-(void)drawlineWithPath:(GMSPath *)path{
+//    GMSMutablePath *path = [GMSMutablePath path];
+//    [path addLatitude:-33.866 longitude:151.195]; // Sydney
+//    [path addLatitude:-18.142 longitude:178.431]; // Fiji
+//    [path addLatitude:21.291 longitude:-157.821]; // Hawaii
+//    [path addLatitude:37.423 longitude:-122.091]; // Mountain View
+//    
+    GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
+    polyline.geodesic = YES;
+    polyline.strokeWidth = 5.f;
+    polyline.strokeColor = [UIColor blueColor];
+    polyline.map = self.googleMapView;
 }
 
 
