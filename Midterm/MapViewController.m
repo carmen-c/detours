@@ -7,6 +7,7 @@
 //
 
 #import "MapViewController.h"
+//#import "PreferencesViewController.h"
 #import "PlaceSearchManager.h"
 #import "DownloadManager.h"
 #import "DetourPlace.h"
@@ -51,7 +52,21 @@
     [self.endDestination resignFirstResponder];
 }
 
-#pragma mark - route
+//- (IBAction)recommendedPlacesButton:(id)sender {
+//    [self performSegueWithIdentifier:@"showPlaces" sender:sender];
+//}
+
+#pragma mark - Segue
+
+//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+//    if ([segue.identifier isEqualToString:@"showPlaces"]) {
+//        PreferencesViewController *pref = segue.destinationViewController;
+////        pref.path = self.pathToDisplay;
+//    }
+//}
+
+
+#pragma mark - Route
 
 -(void)findRoute{
     CLLocation *secondLocation = [[CLLocation alloc] initWithLatitude:37.7422688 longitude:-122.4263441];
@@ -102,20 +117,6 @@
     }];
 }
 
-#pragma mark - find suggested locations
-
-
-
-#pragma mark - line
-
--(void)drawlineWithPath:(GMSPath *)path{
-    GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
-    polyline.geodesic = YES;
-    polyline.strokeWidth = 5.f;
-    polyline.strokeColor = [UIColor blueColor];
-    polyline.map = self.googleMapView;
-}
-
 #pragma mark - find current location
 
 -(void)createLocationManager{
@@ -156,7 +157,7 @@
 }
 
 
-#pragma mark - marker
+#pragma mark - map items
 
 -(void) setEndMarkerAt:(CLLocationCoordinate2D)location {
     GMSMarker *marker = [[GMSMarker alloc] init];
@@ -175,6 +176,13 @@
     marker.map = self.googleMapView;
 }
 
+-(void)drawlineWithPath:(GMSPath *)path{
+    GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
+    polyline.geodesic = YES;
+    polyline.strokeWidth = 5.f;
+    polyline.strokeColor = [UIColor blueColor];
+    polyline.map = self.googleMapView;
+}
 
 #pragma mark - zoom
 
