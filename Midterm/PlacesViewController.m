@@ -12,7 +12,7 @@
 #import "DetourPlace.h"
 #import "SearchPointFilter.h"
 
-@interface PlacesViewController ()
+@interface PlacesViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableSet *setOfDetours;
 
@@ -26,42 +26,23 @@
 //    [self findSuggestedLocationsWithPath:self.parameters];
 }
 
-
 -(void)findSuggestedLocationsWithPath:(SearchParameters *)parameters{
-    NSArray *arrayOfCoordinates = [self getSearchPointCoordinates:parameters];
+    GMSPath *path = parameters.path;
+    NSArray *arrayOfCoordinates = [SearchPointFilter filterPointsWithPath:path];
     
     NSArray *arrayOfURLs = [PlaceSearchManager constructURLWithLocations:arrayOfCoordinates andSearchParameters:parameters];
-    NSMutableArray *URLsToFetch = [NSMutableArray array];
-    for (int i = 0; i < arrayOfURLs.count; i += 10) {
-        [URLsToFetch addObject:arrayOfURLs[i]];
-    }
     
     __block int counter = 0;
-    for (NSURL *url in URLsToFetch) {
+    for (NSURL *url in arrayOfURLs) {
         [DownloadManager getPlacesJson:url completion:^(NSSet *setOfPlaces) {
             [self.setOfDetours setByAddingObjectsFromSet:setOfPlaces];
             
             counter++;
-            if (counter >= URLsToFetch.count) {
+            if (counter >= arrayOfURLs.count) {
                 // Completed fetch
             }
         }];
     }
-}
-
-- (NSArray *)getSearchPointCoordinates:(SearchParameters *)parameters {
-    NSMutableArray *array = [NSMutableArray array];
-    GMSPath *path = parameters.path;
-    
-    NSArray *filteredPoints = [SearchPointFilter filterPointsWithPath:path];
-    
-    for (int i=0; i < filteredPoints.count; i++) {
-        CLLocationCoordinate2D coordinate = [path coordinateAtIndex:i];
-        NSString *coordinateString = [NSString stringWithFormat:@"%@,%@", @(coordinate.latitude), @(coordinate.longitude)];
-        [array addObject:coordinateString];
-    }
-    
-    return array;
 }
 
 - (void)didReceiveMemoryWarning {
