@@ -13,10 +13,11 @@
 +(NSArray *)filterPointsWithPath:(GMSPath *)path {
     NSMutableArray *array = [NSMutableArray array];
     
-    CLLocationDistance averageDistance;
-    CLLocationCoordinate2D firstCoordinate = [path coordinateAtIndex:0];
-    
-    
+    for (int i = 0; i < path.count; i+=10) {
+        CLLocationCoordinate2D coordinate = [path coordinateAtIndex:i];
+        NSString *coordinateString = [NSString stringWithFormat:@"%@,%@", @(coordinate.latitude), @(coordinate.longitude)];
+        [array addObject:coordinateString];
+    }
     return array;
 }
 
