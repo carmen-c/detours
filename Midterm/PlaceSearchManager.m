@@ -33,7 +33,7 @@
     NSString *typeString = [PlaceSearchManager createTypeString:parameters.placeTypeArray];
     
     NSMutableArray *queries = [NSMutableArray array];
-    NSDictionary *queryDict = @{@"location" : coordinateString, @"radius" : @"1000", typeString : @"art_gallery", @"key" : kSuvanAPIKey};
+    NSDictionary *queryDict = @{@"location" : coordinateString, @"radius" : @"1000", @"type" : typeString, @"key" : kSuvanAPIKey};
     
     for (NSString *key in queryDict) {
         [queries addObject:[NSURLQueryItem queryItemWithName:key value:queryDict[key]]];
@@ -51,11 +51,12 @@
 }
 
 + (NSString *)createTypeString:(NSArray *)arrayOfPlaceTypes {
-    NSMutableString *result = @"";
-    
-    for (NSString *placeType in arrayOfPlaceTypes) {
+    NSMutableString *result = [arrayOfPlaceTypes[0] mutableCopy];
+    if (arrayOfPlaceTypes.count > 1) {
+        for (int i = 1; i < arrayOfPlaceTypes.count; i++) {
+            [result appendString:[@"|" stringByAppendingString:arrayOfPlaceTypes[i]]];
+        }
     }
-    
     return result;
 }
 
