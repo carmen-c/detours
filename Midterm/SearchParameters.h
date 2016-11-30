@@ -11,6 +11,7 @@
 
 @interface SearchParameters : NSObject
 
+@property (nonatomic, strong) NSDictionary *placesOfInterest;
 @property (nonatomic, strong) NSArray *placeTypeArray;
 @property (nonatomic, strong) GMSPath *path;
 

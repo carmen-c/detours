@@ -38,10 +38,10 @@
     for (NSURL *url in arrayOfURLs) {
         [DownloadManager getPlacesJson:url completion:^(NSSet *setOfPlaces) {
             [self.setOfDetours setByAddingObjectsFromSet:setOfPlaces];
-            
             counter++;
             if (counter >= arrayOfURLs.count) {
-                // Completed fetch
+                [self configureTableViewDataSource];
+                [self.tableView reloadData];
             }
         }];
     }
@@ -64,5 +64,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)configureTableViewDataSource {
+    
+}
 
 @end

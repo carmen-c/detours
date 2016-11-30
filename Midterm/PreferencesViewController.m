@@ -17,6 +17,8 @@
 @property (nonatomic, strong) NSDictionary *placesOfInterest;
 @property (nonatomic, strong) NSMutableArray *selectedPlaces;
 @property (weak, nonatomic) IBOutlet UILabel *warningLabel;
+@property (nonatomic, strong) SearchParameters *parameters;
+
 @end
 
 @implementation PreferencesViewController
@@ -30,16 +32,8 @@ static NSString * const kPlacesOfInterestCellIdentifier = @"placesOfInterestCell
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.warningLabel.hidden = YES;
-    self.placesOfInterest = @{@"Amusement Parks" : @"amusement_park",
-                              @"Aquariums" : @"aquarium",
-                              @"Art Galleries" : @"art_gallery",
-                              @"Campgrounds" : @"campground",
-                              @"Casinos" : @"casino",
-                              @"Lodging Services" : @"lodging",
-                              @"Museums" : @"museum",
-                              @"Parking" : @"parking",
-                              @"Malls" : @"shopping_mall",
-                              @"Zoos" : @"zoo"};
+    self.parameters = [[SearchParameters alloc] init];
+    self.placesOfInterest = self.parameters.placesOfInterest;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -90,15 +84,13 @@ static NSString * const kPlacesOfInterestCellIdentifier = @"placesOfInterestCell
     } else {
         self.warningLabel.hidden = NO;
     }
-    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:kShowListOfDetoursIdentifier]) {
-        SearchParameters *parameters = [[SearchParameters alloc] init];
-        parameters.placeTypeArray = [self addSearchablePlaceTypes];
+        self.parameters.placeTypeArray = [self addSearchablePlaceTypes];
         PlacesViewController *destinationVC = segue.destinationViewController;
-        destinationVC.parameters = parameters;
+        destinationVC.parameters = self.parameters;
     }
 }
 
