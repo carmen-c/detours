@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet GMSMapView *googleMapView;
 @property (nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) GMSPath *pathToDisplay;
+@property (nonatomic) NSMutableArray *waypointsArray;
 @end
 
 @implementation MapViewController
@@ -51,6 +52,7 @@
 -(void)findRoute{
     CLLocation *secondLocation = [[CLLocation alloc] initWithLatitude:37.7422688 longitude:-122.4263441];
     NSArray *waypointsArray = @[@"via:", secondLocation];
+    [self setWayMarkerAt:CLLocationCoordinate2DMake(secondLocation.coordinate.latitude, secondLocation.coordinate.longitude)];
     
     OCDirectionsRequest *request = [OCDirectionsRequest requestWithOriginString:self.startDestination.text andDestinationString:self.endDestination.text];
     request.waypointsOptimise = YES;
@@ -74,14 +76,13 @@
             NSString * encodedPath = route[@"overview_polyline"][@"points"];
             
             NSArray<NSDictionary *> *legs = route[@"legs"];
-            NSDictionary *leg = legs.firstObject;
+            NSDictionary *leg = legs.lastObject;
             NSDictionary *deeeper = [leg valueForKey:@"end_location"];
             NSString *endLocationLat = [deeeper valueForKey:@"lat"];
             NSString *endLocationLng = [deeeper valueForKey:@"lng"];
             
             double cEndLat = [endLocationLat doubleValue];
             double cEndLng = [endLocationLng doubleValue];
-
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 GMSMutablePath *path = [GMSMutablePath pathFromEncodedPath:encodedPath];
@@ -157,6 +158,15 @@
     marker.position = location;
     marker.snippet = @"Destination";
     marker.appearAnimation = kGMSMarkerAnimationPop;
+    marker.map = self.googleMapView;
+}
+
+-(void) setWayMarkerAt:(CLLocationCoordinate2D)location {
+    GMSMarker *marker = [[GMSMarker alloc] init];
+    marker.position = location;
+    marker.snippet = @"Destination";
+    marker.appearAnimation = kGMSMarkerAnimationPop;
+    marker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
     marker.map = self.googleMapView;
 }
 
