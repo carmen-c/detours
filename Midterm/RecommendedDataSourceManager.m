@@ -15,9 +15,16 @@
 
 + (NSArray *)createDataSourceWithDetours:(NSSet *)setOfDetours andParameters:(SearchParameters *)parameters {
     NSArray *result = [RecommendedDataSourceManager createCategoryContainers:parameters];
+    NSArray *arrayOfDetours = [setOfDetours allObjects];
     
-    
-    
+    for (CategoryContainer *container in result) {
+        NSString *placeType = [parameters.placesOfInterest objectForKey:container.name];
+        for (DetourPlace *place in arrayOfDetours) {
+            if ([place.establishmentType isEqualToString:placeType]) {
+                [container.arrayOfRecommendations arrayByAddingObject:place];
+            }
+        }
+    }
     return result;
 }
 
@@ -33,7 +40,11 @@
         }
     }
     
-    return arrayOfCategories;
+    NSArray *result = arrayOfCategories;
+    NSArray *sortArray = @[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:nil]];
+    result = [result sortedArrayUsingDescriptors:sortArray];
+    
+    return result;
 }
 
 
