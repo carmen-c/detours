@@ -42,7 +42,6 @@ static NSString * const kRecommendedPlaceCellIdentifier = @"recommendedPlaceCell
             [self.setOfDetours setByAddingObjectsFromSet:setOfPlaces];
             counter++;
             if (counter >= arrayOfURLs.count) {
-                [self configureTableViewDataSource];
                 [self.tableView reloadData];
             }
         }];
@@ -52,7 +51,8 @@ static NSString * const kRecommendedPlaceCellIdentifier = @"recommendedPlaceCell
 #pragma mark - TableView
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    NSArray *arrayOfSections = self.parameters.placeTypeArray;
+    return arrayOfSections.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -66,13 +66,21 @@ static NSString * const kRecommendedPlaceCellIdentifier = @"recommendedPlaceCell
     return cell;
 }
 
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSArray *arrayOfPlaceTypes = self.parameters.placeTypeArray;
+    NSMutableArray *arrayOfHeaderTitles = [[NSMutableArray alloc] init];
+    for (NSString *value in arrayOfPlaceTypes) {
+        
+    }
+    
+    NSString *headerTitle;
+    
+    return headerTitle;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void)configureTableViewDataSource {
-    
 }
 
 @end
