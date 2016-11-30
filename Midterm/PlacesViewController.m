@@ -22,6 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     self.setOfDetours = [NSMutableSet set];
 //    [self findSuggestedLocationsWithPath:self.parameters];
 }
@@ -43,6 +45,18 @@
             }
         }];
     }
+}
+
+#pragma mark - TableView
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.setOfDetours.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell;
+    
+    return cell;
 }
 
 - (void)didReceiveMemoryWarning {
