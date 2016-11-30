@@ -69,11 +69,16 @@ static NSString * const kRecommendedPlaceCellIdentifier = @"recommendedPlaceCell
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     NSArray *arrayOfPlaceTypes = self.parameters.placeTypeArray;
     NSMutableArray *arrayOfHeaderTitles = [[NSMutableArray alloc] init];
-    for (NSString *value in arrayOfPlaceTypes) {
-        
+    NSArray *arrayOfKeys = [self.parameters.placesOfInterest allKeys];
+    for (NSString *key in arrayOfKeys) {
+        if ([arrayOfPlaceTypes containsObject:[self.parameters.placesOfInterest valueForKey:key]]) {
+            [arrayOfHeaderTitles addObject:key];
+        }
     }
     
-    NSString *headerTitle;
+    NSArray *arrayOfSortedHeaderTitles = arrayOfHeaderTitles;
+    arrayOfSortedHeaderTitles = [arrayOfSortedHeaderTitles sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    NSString *headerTitle = arrayOfSortedHeaderTitles[section];
     
     return headerTitle;
 }
