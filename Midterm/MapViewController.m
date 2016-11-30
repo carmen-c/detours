@@ -7,10 +7,10 @@
 //
 
 #import "MapViewController.h"
-//#import "PreferencesViewController.h"
 #import "PlaceSearchManager.h"
 #import "DownloadManager.h"
 #import "DetourPlace.h"
+#import "FindRoute.h"
 
 @interface MapViewController () <CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *startDestination;
@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet GMSMapView *googleMapView;
 @property (nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) GMSPath *pathToDisplay;
+@property (nonatomic) FindRoute *findRoute;
+
 @end
 
 @implementation MapViewController
@@ -28,6 +30,7 @@
     [super viewDidLoad];
     self.setOfDetours = [NSMutableSet set];
     self.pathToDisplay = nil;
+    self.findRoute = [[FindRoute alloc]init];
     
     if (self.locationManager == nil) {
         [self createLocationManager];
@@ -39,18 +42,26 @@
 - (IBAction)findButton:(id)sender {
     if (self.pathToDisplay !=nil) {
         [self.googleMapView clear];
-        
-        [self findRoute];
-    }else if (self.pathToDisplay == nil){
-        [self findRoute];
     }
-//    }else {
-//        [self drawlineWithPath:self.pathToDisplay];
-//    }
     
+    [self getRoute];
     [self.startDestination resignFirstResponder];
     [self.endDestination resignFirstResponder];
 }
+
+
+-(void)getRoute{
+    [self.findRoute findRouteWithStart:self.startDestination.text end:self.endDestination.text andCompletion:^(NSMutableArray *array) {
+        
+        self.pathToDisplay = [array objectAtIndex:0];
+        CLLocationCoordinate2D coordinate = ((CLLocation *)[array objectAtIndex:1]).coordinate;
+        [self drawlineWithPath:self.pathToDisplay];
+        [self focusMapToShowAllMarkers:self.pathToDisplay];
+        [self setEndMarkerAt:coordinate];
+    }];
+    
+}
+
 
 //- (IBAction)recommendedPlacesButton:(id)sender {
 //    [self performSegueWithIdentifier:@"showPlaces" sender:sender];
@@ -65,57 +76,6 @@
 //    }
 //}
 
-
-#pragma mark - Route
-
--(void)findRoute{
-    CLLocation *secondLocation = [[CLLocation alloc] initWithLatitude:37.7422688 longitude:-122.4263441];
-    NSArray *waypointsArray = @[@"via:", secondLocation];
-    [self setWayMarkerAt:CLLocationCoordinate2DMake(secondLocation.coordinate.latitude, secondLocation.coordinate.longitude)];
-    
-    OCDirectionsRequest *request = [OCDirectionsRequest requestWithOriginString:self.startDestination.text andDestinationString:self.endDestination.text];
-    request.waypointsOptimise = YES;
-    request.waypoints = waypointsArray;
-    
-    OCDirectionsAPIClient *client = [OCDirectionsAPIClient new];
-    [client directions:request response:^(OCDirectionsResponse *response, NSError *error) {
-
-        if (error) {
-            NSLog(@"error: %@, %@", error, error.localizedDescription);
-            return;
-        }
-        if (response.status != OCDirectionsResponseStatusOK) {
-            NSLog(@"%lu", (unsigned long)response.status);
-            return;
-        }
-        if ([response.routes count] > 0)
-        {
-            NSArray<NSDictionary *> *routes = response.dictionary[@"routes"];
-            NSDictionary * route = routes.firstObject;
-            NSString * encodedPath = route[@"overview_polyline"][@"points"];
-            
-            NSArray<NSDictionary *> *legs = route[@"legs"];
-            NSDictionary *leg = legs.lastObject;
-            NSDictionary *deeeper = [leg valueForKey:@"end_location"];
-            NSString *endLocationLat = [deeeper valueForKey:@"lat"];
-            NSString *endLocationLng = [deeeper valueForKey:@"lng"];
-            
-            double cEndLat = [endLocationLat doubleValue];
-            double cEndLng = [endLocationLng doubleValue];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                GMSPath *path = [GMSPath pathFromEncodedPath:encodedPath];
-                [self drawlineWithPath:path];
-                self.pathToDisplay = path;
-                
-                CLLocationCoordinate2D endDestination = CLLocationCoordinate2DMake(cEndLat, cEndLng);
-                [self setEndMarkerAt:endDestination];
-                [self focusMapToShowAllMarkers:path];
-            });
-        }
-        
-    }];
-}
 
 #pragma mark - find current location
 
@@ -157,7 +117,7 @@
 }
 
 
-#pragma mark - map items
+#pragma mark - map items and zoom
 
 -(void) setEndMarkerAt:(CLLocationCoordinate2D)location {
     GMSMarker *marker = [[GMSMarker alloc] init];
@@ -183,8 +143,6 @@
     polyline.strokeColor = [UIColor blueColor];
     polyline.map = self.googleMapView;
 }
-
-#pragma mark - zoom
 
 - (void)focusMapToShowAllMarkers:(GMSPath *)path{
     GMSCoordinateBounds* bounds = [[GMSCoordinateBounds alloc]initWithPath:path];
