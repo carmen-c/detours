@@ -51,12 +51,11 @@ static NSString * const kRecommendedPlaceCellIdentifier = @"recommendedPlaceCell
 #pragma mark - TableView
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    NSArray *arrayOfSections = self.parameters.placeTypeArray;
-    return arrayOfSections.count;
+    return self.parameters.placeTypeArray.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.setOfDetours.count;
+    return 1;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
