@@ -50,15 +50,17 @@
                                     <action selector="findButton:" destination="9pv-A4-QxB" eventType="touchUpInside" id="cwb-RD-1X9"/>
                                 </connections>
                             </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8an-Gd-js6">
-                                <rect key="frame" x="0.0" y="116" width="375" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sJW-2a-sif">
+                                <rect key="frame" x="0.0" y="104" width="375" height="60"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="fAt-zX-vum"/>
+                                    <constraint firstAttribute="height" constant="60" id="kA7-wh-Qck"/>
                                 </constraints>
+                                <state key="normal" title="Find Recommended Places"/>
                                 <connections>
-                                    <segue destination="Qnl-fb-sfy" kind="embed" id="MWa-nH-FaJ"/>
+                                    <segue destination="oUI-Zt-Z0H" kind="show" id="IR4-Nn-bbB"/>
                                 </connections>
-                            </containerView>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -67,14 +69,14 @@
                             <constraint firstItem="5Mp-SG-ASk" firstAttribute="top" secondItem="bMr-SH-iou" secondAttribute="bottom" constant="8" id="BF9-4I-Lkz"/>
                             <constraint firstItem="5Mp-SG-ASk" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="Cg1-vc-feS"/>
                             <constraint firstItem="2pi-ZW-NjT" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="FT1-W7-laf"/>
+                            <constraint firstItem="sJW-2a-sif" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="HBr-9E-gw7"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="2pi-ZW-NjT" secondAttribute="bottom" id="JvP-oE-wuK"/>
+                            <constraint firstItem="sJW-2a-sif" firstAttribute="top" secondItem="CEP-Fa-awm" secondAttribute="bottom" constant="8" id="Lzj-Fr-t7w"/>
                             <constraint firstItem="CEP-Fa-awm" firstAttribute="leading" secondItem="5Mp-SG-ASk" secondAttribute="trailing" constant="11" id="Yw9-J2-k4t"/>
-                            <constraint firstItem="8an-Gd-js6" firstAttribute="top" secondItem="CEP-Fa-awm" secondAttribute="bottom" constant="20" id="e51-0W-B6s"/>
                             <constraint firstItem="CEP-Fa-awm" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" id="gyb-5b-pwj"/>
                             <constraint firstItem="CEP-Fa-awm" firstAttribute="leading" secondItem="bMr-SH-iou" secondAttribute="trailing" constant="11" id="mSa-fG-apL"/>
-                            <constraint firstAttribute="trailing" secondItem="8an-Gd-js6" secondAttribute="trailing" id="mur-Au-a2x"/>
-                            <constraint firstItem="8an-Gd-js6" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="r6S-qy-tbr"/>
                             <constraint firstAttribute="trailing" secondItem="2pi-ZW-NjT" secondAttribute="trailing" id="sVk-9g-eR1"/>
+                            <constraint firstAttribute="trailing" secondItem="sJW-2a-sif" secondAttribute="trailing" id="vS4-Nc-4sx"/>
                             <constraint firstItem="bMr-SH-iou" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="8" id="wNN-RN-mzv"/>
                             <constraint firstItem="CEP-Fa-awm" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="8" id="yoo-lU-Xy2"/>
                         </constraints>
@@ -88,49 +90,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749.60000000000002" y="-772.26386806596713"/>
-        </scene>
-        <!--Search View Controller-->
-        <scene sceneID="r9P-mb-D1K">
-            <objects>
-                <viewController id="6CI-3t-8S0" customClass="SearchViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="XWu-aT-4lO"/>
-                        <viewControllerLayoutGuide type="bottom" id="nuv-PT-DeH"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Lhu-DJ-yj7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8IM-3J-OJ6">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="6CI-3t-8S0" id="aRz-TP-JXf"/>
-                                </connections>
-                            </searchBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" systemItem="search" id="Cpw-Wm-8aK"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="searchDisplayController" destination="Sco-fW-QPM" id="el2-5h-pWs"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dDt-1f-cUy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="Sco-fW-QPM">
-                    <connections>
-                        <outlet property="delegate" destination="6CI-3t-8S0" id="OTE-Tb-3BV"/>
-                        <outlet property="searchBar" destination="8IM-3J-OJ6" id="ehk-db-QPq"/>
-                        <outlet property="searchContentsController" destination="6CI-3t-8S0" id="aUU-gj-a7s"/>
-                        <outlet property="searchResultsDataSource" destination="6CI-3t-8S0" id="rcK-T1-pvg"/>
-                        <outlet property="searchResultsDelegate" destination="6CI-3t-8S0" id="vl6-Z9-JNo"/>
-                    </connections>
-                </searchDisplayController>
-            </objects>
-            <point key="canvasLocation" x="750" y="1316"/>
+            <point key="canvasLocation" x="750" y="-1003"/>
         </scene>
         <!--My Trip-->
         <scene sceneID="a08-4e-Twk">
@@ -248,7 +208,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O87-Ep-9GC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2127" y="493"/>
+            <point key="canvasLocation" x="1745" y="645"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -262,69 +222,14 @@
                     </tabBar>
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
-                        <segue destination="oUI-Zt-Z0H" kind="relationship" relationship="viewControllers" id="sqf-pU-MOJ"/>
                         <segue destination="pIk-u6-bQz" kind="relationship" relationship="viewControllers" id="2IZ-Om-4XF"/>
-                        <segue destination="6CI-3t-8S0" kind="relationship" relationship="viewControllers" id="IIo-ic-Dff"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-466" y="-1"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="IEq-qs-YrD">
-            <objects>
-                <viewController id="Qnl-fb-sfy" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="aJV-Dx-a5y"/>
-                        <viewControllerLayoutGuide type="bottom" id="qlY-NT-I1S"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="qgf-EB-izJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nSb-jj-PiQ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                <items>
-                                    <barButtonItem title="walk" id="wzO-fl-4dc"/>
-                                    <barButtonItem style="plain" id="KUr-rq-3K2">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7mn-8J-k7g">
-                                            <rect key="frame" x="61" y="10" width="44" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="transit"/>
-                                        </button>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" id="Fl3-G8-5iN">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IDV-lm-Btd">
-                                            <rect key="frame" x="115" y="10" width="30" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="bike"/>
-                                        </button>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" id="Hqa-A5-4j8">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ugt-av-alm">
-                                            <rect key="frame" x="155" y="10" width="34" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="drive"/>
-                                        </button>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="nSb-jj-PiQ" firstAttribute="leading" secondItem="qgf-EB-izJ" secondAttribute="leading" id="Wb6-8M-v2V"/>
-                            <constraint firstAttribute="trailing" secondItem="nSb-jj-PiQ" secondAttribute="trailing" id="kSV-LH-HfK"/>
-                            <constraint firstItem="qlY-NT-I1S" firstAttribute="top" secondItem="nSb-jj-PiQ" secondAttribute="bottom" id="px4-Xi-vFQ"/>
-                            <constraint firstItem="nSb-jj-PiQ" firstAttribute="top" secondItem="aJV-Dx-a5y" secondAttribute="bottom" id="uwH-oe-3J5"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SZe-cU-9hY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1524" y="-954"/>
-        </scene>
-        <!--Recommendations-->
+        <!--Preferences View Controller-->
         <scene sceneID="yqY-Rj-ZQj">
             <objects>
                 <viewController id="oUI-Zt-Z0H" customClass="PreferencesViewController" sceneMemberID="viewController">
@@ -398,7 +303,6 @@
                             <constraint firstAttribute="trailing" secondItem="X7t-ca-N3b" secondAttribute="trailing" id="ra7-lk-rUO"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Recommendations" id="3Go-tg-thG"/>
                     <connections>
                         <outlet property="instructionsLabel" destination="R7w-4x-wMC" id="cQ0-4T-Ymi"/>
                         <outlet property="tableView" destination="X7t-ca-N3b" id="HGQ-Vl-wqv"/>
