@@ -20,6 +20,8 @@
 
 @implementation PlacesViewController
 
+static NSString * const kReccomendedPlaceCellIdentifier = @"recommendedPlaceCell";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.delegate = self;
@@ -54,7 +56,8 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kReccomendedPlaceCellIdentifier forIndexPath:indexPath];
+    
     
     return cell;
 }
