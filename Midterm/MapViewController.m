@@ -169,7 +169,7 @@
 -(void) setWayMarkerAt:(CLLocationCoordinate2D)location {
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.position = location;
-    marker.snippet = @"Destination";
+    marker.snippet = @"WAYPOINT";
     marker.appearAnimation = kGMSMarkerAnimationPop;
     marker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
     marker.map = self.googleMapView;
