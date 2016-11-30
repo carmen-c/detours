@@ -7,21 +7,30 @@
 //
 
 #import "DetailViewController.h"
+#import "DetourPlace.h"
 
 @interface DetailViewController ()
-
+@property (weak, nonatomic) IBOutlet UILabel *detourNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *establishmentTypeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *distancelabel;
+@property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
+@property (nonatomic) DetourPlace *detour;
 @end
 
 @implementation DetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self configureView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)configureView{
+    self.detourNameLabel.text = self.detour.name;
+    self.establishmentTypeLabel.text = self.detour.establishmentType;
+    self.addressLabel.text = self.detour.address;
+    self.distancelabel.text = [NSString stringWithFormat:@"%.2f", self.detour.distanceFromBaseRoute];
+    self.ratingLabel.text = [NSString stringWithFormat:@"%@", self.detour.rating];
 }
 
 /*
@@ -32,6 +41,7 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
+
 */
 
 @end
