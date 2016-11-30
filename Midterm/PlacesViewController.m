@@ -11,10 +11,13 @@
 #import "DownloadManager.h"
 #import "DetourPlace.h"
 #import "SearchPointFilter.h"
+#import "CategoryContainer.h"
+#import "RecommendedDataSourceManager.h"
 
 @interface PlacesViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableSet *setOfDetours;
+@property (nonatomic, strong) NSArray *arrayOfRecommendations;
 
 @end
 
@@ -42,7 +45,7 @@ static NSString * const kRecommendedPlaceCellIdentifier = @"recommendedPlaceCell
             [self.setOfDetours setByAddingObjectsFromSet:setOfPlaces];
             counter++;
             if (counter >= arrayOfURLs.count) {
-                
+                self.arrayOfRecommendations = [RecommendedDataSourceManager createDataSourceWithDetours:self.setOfDetours andParameters:parameters];
                 [self.tableView reloadData];
             }
         }];
