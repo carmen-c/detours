@@ -10,4 +10,22 @@
 
 @implementation SearchParameters
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _placesOfInterest = @{@"Amusement Parks" : @"amusement_park",
+                              @"Aquariums" : @"aquarium",
+                              @"Art Galleries" : @"art_gallery",
+                              @"Campgrounds" : @"campground",
+                              @"Casinos" : @"casino",
+                              @"Lodging Services" : @"lodging",
+                              @"Museums" : @"museum",
+                              @"Parking" : @"parking",
+                              @"Malls" : @"shopping_mall",
+                              @"Zoos" : @"zoo"};
+    }
+    return self;
+}
+
 @end
