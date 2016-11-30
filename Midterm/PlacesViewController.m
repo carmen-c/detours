@@ -11,10 +11,14 @@
 #import "DownloadManager.h"
 #import "DetourPlace.h"
 #import "SearchPointFilter.h"
+#import "CategoryContainer.h"
+#import "RecommendedDataSourceManager.h"
 
 @interface PlacesViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableSet *setOfDetours;
+@property (nonatomic, strong) NSArray *arrayOfRecommendations;
+@property (nonatomic, strong) NSMutableArray *selectedDetours;
 
 @end
 
@@ -27,8 +31,11 @@ static NSString * const kRecommendedPlaceCellIdentifier = @"recommendedPlaceCell
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.setOfDetours = [NSMutableSet set];
+    self.selectedDetours = [NSMutableArray array];
 //    [self findSuggestedLocationsWithPath:self.parameters];
 }
+
+#pragma mark - Gather Data
 
 -(void)findSuggestedLocationsWithPath:(SearchParameters *)parameters{
     GMSPath *path = parameters.path;
@@ -42,7 +49,7 @@ static NSString * const kRecommendedPlaceCellIdentifier = @"recommendedPlaceCell
             [self.setOfDetours setByAddingObjectsFromSet:setOfPlaces];
             counter++;
             if (counter >= arrayOfURLs.count) {
-                
+                self.arrayOfRecommendations = [RecommendedDataSourceManager createDataSourceWithDetours:self.setOfDetours andParameters:parameters];
                 [self.tableView reloadData];
             }
         }];
@@ -52,35 +59,42 @@ static NSString * const kRecommendedPlaceCellIdentifier = @"recommendedPlaceCell
 #pragma mark - TableView
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.parameters.placeTypeArray.count;
+    return self.arrayOfRecommendations.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    CategoryContainer *container = self.arrayOfRecommendations[section];
+    return container.arrayOfRecommendations.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kRecommendedPlaceCellIdentifier forIndexPath:indexPath];
+    CategoryContainer *container = self.arrayOfRecommendations[indexPath.section];
+    DetourPlace *place = container.arrayOfRecommendations[indexPath.row];
+    cell.textLabel.text = place.name;
     
+    if ([self.selectedDetours containsObject:place]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     
     return cell;
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    NSArray *arrayOfPlaceTypes = self.parameters.placeTypeArray;
-    NSMutableArray *arrayOfHeaderTitles = [[NSMutableArray alloc] init];
-    NSArray *arrayOfKeys = [self.parameters.placesOfInterest allKeys];
-    for (NSString *key in arrayOfKeys) {
-        if ([arrayOfPlaceTypes containsObject:[self.parameters.placesOfInterest valueForKey:key]]) {
-            [arrayOfHeaderTitles addObject:key];
-        }
+    CategoryContainer *container = self.arrayOfRecommendations[section];
+    return container.name;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    CategoryContainer *container = self.arrayOfRecommendations[indexPath.section];
+    DetourPlace *place = container.arrayOfRecommendations[indexPath.row];
+    if ([self.selectedDetours containsObject:place]) {
+        [self.selectedDetours removeObject:place];
+    } else {
+        [self.selectedDetours addObject:place];
     }
-    
-    NSArray *arrayOfSortedHeaderTitles = arrayOfHeaderTitles;
-    arrayOfSortedHeaderTitles = [arrayOfSortedHeaderTitles sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-    NSString *headerTitle = arrayOfSortedHeaderTitles[section];
-    
-    return headerTitle;
 }
 
 - (void)didReceiveMemoryWarning {
