@@ -13,7 +13,8 @@
 +(NSArray *)filterPointsWithPath:(GMSPath *)path {
     NSMutableArray *array = [NSMutableArray array];
     
-    float averageDistance;
+    CLLocationDistance averageDistance;
+    CLLocationCoordinate2D firstCoordinate = [path coordinateAtIndex:0];
     
     
     return array;
