@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class SearchParameters;
+
 @interface PreferencesViewController : UIViewController
+
+@property (nonatomic) SearchParameters *parameters;
 
 @end

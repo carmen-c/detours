@@ -17,7 +17,6 @@
 @property (nonatomic, strong) NSDictionary *placesOfInterest;
 @property (nonatomic, strong) NSMutableArray *selectedPlaces;
 @property (weak, nonatomic) IBOutlet UILabel *warningLabel;
-@property (nonatomic, strong) SearchParameters *parameters;
 
 @end
 
@@ -32,7 +31,6 @@ static NSString * const kPlacesOfInterestCellIdentifier = @"placesOfInterestCell
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.warningLabel.hidden = YES;
-    self.parameters = [[SearchParameters alloc] init];
     self.placesOfInterest = self.parameters.placesOfInterest;
 }
 

@@ -7,10 +7,12 @@
 //
 
 #import "MapViewController.h"
+#import "PreferencesViewController.h"
 #import "PlaceSearchManager.h"
 #import "DownloadManager.h"
 #import "DetourPlace.h"
 #import "FindRoute.h"
+#import "SearchParameters.h"
 
 @interface MapViewController () <CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *startDestination;
@@ -21,6 +23,7 @@
 @property (nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) GMSPath *pathToDisplay;
 @property (nonatomic) FindRoute *findRoute;
+@property (nonatomic) SearchParameters *parameters;
 
 @end
 
@@ -31,6 +34,7 @@
     self.setOfDetours = [NSMutableSet set];
     self.pathToDisplay = nil;
     self.findRoute = [[FindRoute alloc]init];
+    self.parameters = [[SearchParameters alloc] init];
     
     if (self.locationManager == nil) {
         [self createLocationManager];
@@ -54,6 +58,7 @@
     [self.findRoute findRouteWithStart:self.startDestination.text end:self.endDestination.text andCompletion:^(NSMutableArray *array) {
         
         self.pathToDisplay = [array objectAtIndex:0];
+        self.parameters.path = self.pathToDisplay;
         CLLocationCoordinate2D coordinate = ((CLLocation *)[array objectAtIndex:1]).coordinate;
         [self drawlineWithPath:self.pathToDisplay];
         [self focusMapToShowAllMarkers:self.pathToDisplay];
@@ -63,18 +68,18 @@
 }
 
 
-//- (IBAction)recommendedPlacesButton:(id)sender {
-//    [self performSegueWithIdentifier:@"showPlaces" sender:sender];
-//}
+- (IBAction)recommendedPlacesButton:(id)sender {
+    [self performSegueWithIdentifier:@"showPlaces" sender:sender];
+}
 
 #pragma mark - Segue
 
-//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-//    if ([segue.identifier isEqualToString:@"showPlaces"]) {
-//        PreferencesViewController *pref = segue.destinationViewController;
-////        pref.path = self.pathToDisplay;
-//    }
-//}
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"showPlaces"]) {
+        PreferencesViewController *pref = segue.destinationViewController;
+        pref.parameters = self.parameters;
+    }
+}
 
 
 #pragma mark - find current location
