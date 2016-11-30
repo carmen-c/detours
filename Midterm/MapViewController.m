@@ -19,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet GMSMapView *googleMapView;
 @property (nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) GMSPath *pathToDisplay;
-@property (nonatomic) CLLocationCoordinate2D endCoordinate;
 @end
 
 @implementation MapViewController
@@ -50,13 +49,12 @@
 #pragma mark - route
 
 -(void)findRoute{
-//    CLLocation *secondLocation = [[CLLocation alloc] initWithLatitude:37.7422688 longitude:-122.4263441];
-//    
-//    NSArray *waypointsArray = @[@"via:", secondLocation];
+    CLLocation *secondLocation = [[CLLocation alloc] initWithLatitude:37.7422688 longitude:-122.4263441];
+    NSArray *waypointsArray = @[@"via:", secondLocation];
     
     OCDirectionsRequest *request = [OCDirectionsRequest requestWithOriginString:self.startDestination.text andDestinationString:self.endDestination.text];
     request.waypointsOptimise = YES;
-//    request.waypoints = waypointsArray;
+    request.waypoints = waypointsArray;
     
     OCDirectionsAPIClient *client = [OCDirectionsAPIClient new];
     [client directions:request response:^(OCDirectionsResponse *response, NSError *error) {
@@ -91,11 +89,8 @@
                 self.pathToDisplay = path;
                 
                 CLLocationCoordinate2D endDestination = CLLocationCoordinate2DMake(cEndLat, cEndLng);
-    
                 [self setEndMarkerAt:endDestination];
-
             });
-            
         }
         
     }];
@@ -105,22 +100,15 @@
 
 
 
-#pragma mark - draw line and destination marker
+#pragma mark - draw line
 
 -(void)drawlineWithPath:(GMSPath *)path{
-//    GMSMutablePath *path = [GMSMutablePath path];
-//    [path addLatitude:-33.866 longitude:151.195]; // Sydney
-//    [path addLatitude:-18.142 longitude:178.431]; // Fiji
-//    [path addLatitude:21.291 longitude:-157.821]; // Hawaii
-//    [path addLatitude:37.423 longitude:-122.091]; // Mountain View
-//    
     GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
     polyline.geodesic = YES;
     polyline.strokeWidth = 5.f;
     polyline.strokeColor = [UIColor blueColor];
     polyline.map = self.googleMapView;
 }
-
 
 #pragma mark - find current location
 
