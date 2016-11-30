@@ -33,8 +33,8 @@
     self.detourNameLabel.text = self.detour.name;
     self.establishmentTypeLabel.text = self.detour.establishmentType;
     self.addressLabel.text = self.detour.address;
-    self.distancelabel.text = [NSString stringWithFormat:@"%.2f", self.detour.distanceFromBaseRoute];
-    self.ratingLabel.text = [NSString stringWithFormat:@"%@", self.detour.rating];
+    self.distancelabel.text = [NSString stringWithFormat:@"distance: %.2f", self.detour.distanceFromBaseRoute];
+    self.ratingLabel.text = [NSString stringWithFormat:@"rating: %@", self.detour.rating];
     [self loadFirstPhotoForPlace:self.detour.placeID];
 }
 
