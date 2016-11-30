@@ -205,25 +205,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="place name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VcT-4s-tNY">
-                                <rect key="frame" x="20" y="28" width="141.5" height="33.5"/>
+                                <rect key="frame" x="20" y="28" width="142" height="34"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xwh-sk-FlC">
-                                <rect key="frame" x="20" y="69" width="34" height="21"/>
+                                <rect key="frame" x="20" y="70" width="34" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bk5-4V-qNj">
-                                <rect key="frame" x="20" y="95" width="62" height="21"/>
+                                <rect key="frame" x="20" y="96" width="62" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="prl-vs-nO8">
-                                <rect key="frame" x="20" y="141" width="66" height="21"/>
+                                <rect key="frame" x="20" y="142" width="66" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -234,16 +234,23 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Jj-zC-Ong">
+                                <rect key="frame" x="0.0" y="178" width="375" height="440"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="VcT-4s-tNY" firstAttribute="top" secondItem="ppQ-64-oss" secondAttribute="bottom" constant="8" id="0Au-i6-hSi"/>
                             <constraint firstItem="xwh-sk-FlC" firstAttribute="top" secondItem="VcT-4s-tNY" secondAttribute="bottom" constant="8" id="0h4-Lu-GQL"/>
                             <constraint firstItem="prl-vs-nO8" firstAttribute="leading" secondItem="ZHJ-uX-GFx" secondAttribute="leadingMargin" constant="4" id="JcO-aG-aBg"/>
+                            <constraint firstItem="12g-GJ-cZU" firstAttribute="top" secondItem="6Jj-zC-Ong" secondAttribute="bottom" id="KHD-Zh-WWt"/>
+                            <constraint firstItem="6Jj-zC-Ong" firstAttribute="top" secondItem="prl-vs-nO8" secondAttribute="bottom" constant="15" id="QfN-X2-7ml"/>
                             <constraint firstItem="Bk5-4V-qNj" firstAttribute="leading" secondItem="ZHJ-uX-GFx" secondAttribute="leadingMargin" constant="4" id="Rqy-Ud-m5d"/>
+                            <constraint firstAttribute="trailing" secondItem="6Jj-zC-Ong" secondAttribute="trailing" id="ZjW-uM-6Z6"/>
                             <constraint firstItem="mbo-02-jA1" firstAttribute="trailing" secondItem="ZHJ-uX-GFx" secondAttribute="trailingMargin" constant="4" id="dE0-Ej-6El"/>
                             <constraint firstItem="xwh-sk-FlC" firstAttribute="leading" secondItem="ZHJ-uX-GFx" secondAttribute="leadingMargin" constant="4" id="eRr-ux-CJN"/>
                             <constraint firstItem="Bk5-4V-qNj" firstAttribute="top" secondItem="xwh-sk-FlC" secondAttribute="bottom" constant="5" id="h86-Pw-R6e"/>
+                            <constraint firstItem="6Jj-zC-Ong" firstAttribute="leading" secondItem="ZHJ-uX-GFx" secondAttribute="leading" id="l5E-Zi-Z7D"/>
                             <constraint firstItem="prl-vs-nO8" firstAttribute="top" secondItem="Bk5-4V-qNj" secondAttribute="bottom" constant="25" id="lQn-ZC-r9C"/>
                             <constraint firstItem="VcT-4s-tNY" firstAttribute="leading" secondItem="ZHJ-uX-GFx" secondAttribute="leadingMargin" constant="4" id="nbi-rD-aAE"/>
                             <constraint firstItem="mbo-02-jA1" firstAttribute="top" secondItem="ppQ-64-oss" secondAttribute="bottom" constant="16" id="z5e-81-IhQ"/>
@@ -251,6 +258,7 @@
                     </view>
                     <connections>
                         <outlet property="addressLabel" destination="Bk5-4V-qNj" id="roK-pe-n6v"/>
+                        <outlet property="detourImageView" destination="6Jj-zC-Ong" id="sO9-Rq-U0W"/>
                         <outlet property="detourNameLabel" destination="VcT-4s-tNY" id="IzT-aS-YbR"/>
                         <outlet property="distancelabel" destination="prl-vs-nO8" id="J9G-4V-zzH"/>
                         <outlet property="establishmentTypeLabel" destination="xwh-sk-FlC" id="ezP-ZG-OvQ"/>

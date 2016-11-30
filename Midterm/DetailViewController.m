@@ -8,6 +8,7 @@
 
 #import "DetailViewController.h"
 #import "DetourPlace.h"
+#import <GooglePlaces/GooglePlaces.h>
 
 @interface DetailViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *detourNameLabel;
@@ -15,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *distancelabel;
 @property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *detourImageView;
 @property (nonatomic) DetourPlace *detour;
 @end
 
@@ -25,13 +27,52 @@
     [self configureView];
 }
 
+#pragma mark - text
+
 -(void)configureView{
     self.detourNameLabel.text = self.detour.name;
     self.establishmentTypeLabel.text = self.detour.establishmentType;
     self.addressLabel.text = self.detour.address;
     self.distancelabel.text = [NSString stringWithFormat:@"%.2f", self.detour.distanceFromBaseRoute];
     self.ratingLabel.text = [NSString stringWithFormat:@"%@", self.detour.rating];
+    [self loadFirstPhotoForPlace:self.detour.placeID];
 }
+
+#pragma mark - photo
+
+- (void)loadFirstPhotoForPlace:(NSString *)placeID {
+    [[GMSPlacesClient sharedClient]
+     lookUpPhotosForPlaceID:placeID
+     callback:^(GMSPlacePhotoMetadataList *_Nullable photos,
+                NSError *_Nullable error) {
+         if (error) {
+             // TODO: handle the error.
+             NSLog(@"Error: %@", [error description]);
+         } else {
+             if (photos.results.count > 0) {
+                 GMSPlacePhotoMetadata *firstPhoto = photos.results.firstObject;
+                 [self loadImageForMetadata:firstPhoto];
+             }
+         }
+     }];
+}
+
+- (void)loadImageForMetadata:(GMSPlacePhotoMetadata *)photoMetadata {
+    [[GMSPlacesClient sharedClient]
+     loadPlacePhoto:photoMetadata
+     constrainedToSize:self.detourImageView.bounds.size
+     scale:self.detourImageView.window.screen.scale
+     callback:^(UIImage *_Nullable photo, NSError *_Nullable error) {
+         if (error) {
+             // TODO: handle the error.
+             NSLog(@"Error: %@", [error description]);
+         } else {
+             self.detourImageView.image = photo;
+             //self.attributionTextView.attributedText = photoMetadata.attributions;
+         }
+     }];
+}
+
 
 /*
 #pragma mark - Navigation
