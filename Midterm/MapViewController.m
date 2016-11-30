@@ -19,7 +19,8 @@
 @property (weak, nonatomic) IBOutlet GMSMapView *googleMapView;
 @property (nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) GMSPath *pathToDisplay;
-@property (nonatomic) NSMutableArray *waypointsArray;
+@property (nonatomic) NSMutableArray *allTheMarkers;
+@property (nonatomic) NSMutableArray *allTheLines;
 @end
 
 @implementation MapViewController
@@ -37,11 +38,17 @@
 #pragma mark - buttons
 
 - (IBAction)findButton:(id)sender {
-    if (self.pathToDisplay == nil) {
+    if (self.pathToDisplay !=nil) {
+//        self.pathToDisplay = nil;
+//        self.allTheLines = nil;
+        [self.googleMapView clear];
         [self findRoute];
-    }else {
-        [self drawlineWithPath:self.pathToDisplay];
+    }else if (self.pathToDisplay == nil){
+        [self findRoute];
     }
+//    }else {
+//        [self drawlineWithPath:self.pathToDisplay];
+//    }
     
     [self.startDestination resignFirstResponder];
     [self.endDestination resignFirstResponder];
@@ -85,12 +92,13 @@
             double cEndLng = [endLocationLng doubleValue];
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                GMSMutablePath *path = [GMSMutablePath pathFromEncodedPath:encodedPath];
+                GMSPath *path = [GMSPath pathFromEncodedPath:encodedPath];
                 [self drawlineWithPath:path];
                 self.pathToDisplay = path;
                 
                 CLLocationCoordinate2D endDestination = CLLocationCoordinate2DMake(cEndLat, cEndLng);
                 [self setEndMarkerAt:endDestination];
+                [self focusMapToShowAllMarkers:path];
             });
         }
         
@@ -109,6 +117,7 @@
     polyline.strokeWidth = 5.f;
     polyline.strokeColor = [UIColor blueColor];
     polyline.map = self.googleMapView;
+    [self.allTheLines addObject:polyline];
 }
 
 #pragma mark - find current location
@@ -159,6 +168,7 @@
     marker.snippet = @"Destination";
     marker.appearAnimation = kGMSMarkerAnimationPop;
     marker.map = self.googleMapView;
+    [self.allTheMarkers addObject:marker];
 }
 
 -(void) setWayMarkerAt:(CLLocationCoordinate2D)location {
@@ -168,7 +178,15 @@
     marker.appearAnimation = kGMSMarkerAnimationPop;
     marker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
     marker.map = self.googleMapView;
+    [self.allTheMarkers addObject:marker];
 }
 
+#pragma mark - zoom
+
+- (void)focusMapToShowAllMarkers:(GMSPath *)path{
+    GMSCoordinateBounds* bounds = [[GMSCoordinateBounds alloc]initWithPath:path];
+    GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds];
+    [self.googleMapView animateWithCameraUpdate:update];
+}
 
 @end
