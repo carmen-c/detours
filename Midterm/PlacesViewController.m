@@ -42,6 +42,7 @@ static NSString * const kRecommendedPlaceCellIdentifier = @"recommendedPlaceCell
             [self.setOfDetours setByAddingObjectsFromSet:setOfPlaces];
             counter++;
             if (counter >= arrayOfURLs.count) {
+                
                 [self.tableView reloadData];
             }
         }];
