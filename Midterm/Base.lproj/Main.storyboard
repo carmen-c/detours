@@ -292,22 +292,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the types of places you want to stop at:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R7w-4x-wMC">
-                                <rect key="frame" x="10" y="28" width="354" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="kZ7-Y6-1f6"/>
-                                    <constraint firstAttribute="width" constant="354" id="yY4-hM-MWc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Types of Places" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R7w-4x-wMC">
+                                <rect key="frame" x="92.5" y="28" width="190" height="33.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X7t-ca-N3b">
-                                <rect key="frame" x="0.0" y="116" width="375" height="365"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please select places of interest" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d1U-88-CTK">
+                                <rect key="frame" x="16" y="69" width="343" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HNr-sE-301">
+                                <rect key="frame" x="0.0" y="558" width="375" height="60"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="365" id="At8-M1-EnS"/>
+                                    <constraint firstAttribute="height" constant="60" id="ShR-bW-6NE"/>
                                 </constraints>
+                                <state key="normal" title="Find Recommendations"/>
+                                <connections>
+                                    <action selector="findButton:" destination="oUI-Zt-Z0H" eventType="touchUpInside" id="aQs-Ng-Z3s"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X7t-ca-N3b">
+                                <rect key="frame" x="0.0" y="97" width="375" height="461"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="placesOfInterestCell" id="Tdw-bP-sXJ">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -319,39 +329,21 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HNr-sE-301">
-                                <rect key="frame" x="203" y="56" width="161" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="161" id="GZK-y9-gDk"/>
-                                    <constraint firstAttribute="height" constant="30" id="GpT-JW-FCv"/>
-                                </constraints>
-                                <state key="normal" title="Find Recommendations"/>
-                                <connections>
-                                    <action selector="findButton:" destination="oUI-Zt-Z0H" eventType="touchUpInside" id="aQs-Ng-Z3s"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please select places of interest" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d1U-88-CTK">
-                                <rect key="frame" x="10" y="48" width="172" height="47"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="172" id="OPV-dd-Ygw"/>
-                                    <constraint firstAttribute="height" constant="47" id="oME-mE-nZO"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="R7w-4x-wMC" firstAttribute="top" secondItem="XsX-La-S1H" secondAttribute="bottom" constant="8" id="7sR-dQ-QCe"/>
-                            <constraint firstAttribute="trailing" secondItem="HNr-sE-301" secondAttribute="trailing" constant="11" id="DjK-oJ-hEg"/>
-                            <constraint firstItem="HNr-sE-301" firstAttribute="top" secondItem="R7w-4x-wMC" secondAttribute="bottom" constant="7" id="IbL-lL-xuO"/>
-                            <constraint firstItem="X7t-ca-N3b" firstAttribute="top" secondItem="d1U-88-CTK" secondAttribute="bottom" constant="21" id="RA4-oL-Lay"/>
-                            <constraint firstItem="X7t-ca-N3b" firstAttribute="leading" secondItem="jtr-MY-MZO" secondAttribute="leading" id="Rnw-6s-5vI"/>
-                            <constraint firstItem="d1U-88-CTK" firstAttribute="top" secondItem="XsX-La-S1H" secondAttribute="bottom" constant="28" id="Ugq-Lx-3mE"/>
-                            <constraint firstItem="d1U-88-CTK" firstAttribute="leading" secondItem="jtr-MY-MZO" secondAttribute="leading" constant="10" id="Yl2-Fh-pMP"/>
-                            <constraint firstItem="R7w-4x-wMC" firstAttribute="centerX" secondItem="jtr-MY-MZO" secondAttribute="centerX" id="dxl-Cx-k0k"/>
-                            <constraint firstAttribute="trailing" secondItem="X7t-ca-N3b" secondAttribute="trailing" id="ra7-lk-rUO"/>
+                            <constraint firstAttribute="trailing" secondItem="HNr-sE-301" secondAttribute="trailing" id="73T-ia-guG"/>
+                            <constraint firstItem="HNr-sE-301" firstAttribute="leading" secondItem="jtr-MY-MZO" secondAttribute="leading" id="92C-pj-JeJ"/>
+                            <constraint firstItem="X7t-ca-N3b" firstAttribute="leading" secondItem="jtr-MY-MZO" secondAttribute="leading" id="Eo4-iz-gvr"/>
+                            <constraint firstItem="R7w-4x-wMC" firstAttribute="centerX" secondItem="jtr-MY-MZO" secondAttribute="centerX" id="GnP-A1-pla"/>
+                            <constraint firstItem="d1U-88-CTK" firstAttribute="top" secondItem="R7w-4x-wMC" secondAttribute="bottom" constant="8" id="Kn8-s0-SYe"/>
+                            <constraint firstAttribute="trailing" secondItem="X7t-ca-N3b" secondAttribute="trailing" id="XVy-lA-4nH"/>
+                            <constraint firstItem="Ves-Vy-KZc" firstAttribute="top" secondItem="HNr-sE-301" secondAttribute="bottom" id="dBR-JC-1Wu"/>
+                            <constraint firstItem="R7w-4x-wMC" firstAttribute="top" secondItem="XsX-La-S1H" secondAttribute="bottom" constant="8" id="e1f-e8-S20"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="d1U-88-CTK" secondAttribute="trailing" id="eWi-EM-e2v"/>
+                            <constraint firstItem="d1U-88-CTK" firstAttribute="leading" secondItem="jtr-MY-MZO" secondAttribute="leadingMargin" id="gWM-bM-Ie1"/>
+                            <constraint firstItem="X7t-ca-N3b" firstAttribute="top" secondItem="d1U-88-CTK" secondAttribute="bottom" constant="8" id="h76-w9-QME"/>
+                            <constraint firstItem="HNr-sE-301" firstAttribute="top" secondItem="X7t-ca-N3b" secondAttribute="bottom" id="u7b-w2-1de"/>
                         </constraints>
                     </view>
                     <connections>
