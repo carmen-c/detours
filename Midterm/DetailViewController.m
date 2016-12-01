@@ -8,6 +8,7 @@
 
 #import "DetailViewController.h"
 #import "DetourPlace.h"
+#import "SearchParameters.h"
 #import <GooglePlaces/GooglePlaces.h>
 
 @interface DetailViewController ()
@@ -30,7 +31,7 @@
 
 -(void)configureView{
     self.detourNameLabel.text = self.detour.name;
-    self.establishmentTypeLabel.text = self.detour.establishmentType;
+    self.establishmentTypeLabel.text = [self cleanUpEstType];
     self.addressLabel.text = self.detour.address;
     self.distancelabel.text = [NSString stringWithFormat:@"distance: %.2f", self.detour.distanceFromBaseRoute];
     if (self.detour.rating == nil) {
@@ -79,6 +80,17 @@
              [self.view setNeedsDisplay];
          }
      }];
+}
+
+-(NSString *)cleanUpEstType {
+    NSString *result;
+    SearchParameters *parameters = [[SearchParameters alloc] init];
+    for (NSString *key in parameters.placesOfInterest) {
+        if ([[parameters.placesOfInterest objectForKey:key] isEqualToString:self.detour.establishmentType]) {
+            result = key;
+        }
+    }
+    return result;
 }
 
 
