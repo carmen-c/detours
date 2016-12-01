@@ -33,7 +33,12 @@
     self.establishmentTypeLabel.text = self.detour.establishmentType;
     self.addressLabel.text = self.detour.address;
     self.distancelabel.text = [NSString stringWithFormat:@"distance: %.2f", self.detour.distanceFromBaseRoute];
-//    self.ratingLabel.text = [NSString stringWithFormat:@"rating: %@", self.detour.rating];
+    if (self.detour.rating == nil) {
+        self.ratingLabel.text = @"rating: N/A";
+    } else {
+        self.ratingLabel.text = [NSString stringWithFormat:@"rating: %@", self.detour.rating];
+    }
+    
     [self loadFirstPhotoForPlace:self.detour.placeID];
 }
 
@@ -67,21 +72,11 @@
              NSLog(@"Error: %@", [error description]);
          } else {
              self.detourImageView.image = photo;
+             [self.view setNeedsDisplay];
              //self.attributionTextView.attributedText = photoMetadata.attributions;
          }
      }];
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
-*/
 
 @end

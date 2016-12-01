@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import <OCGoogleDirectionsAPI/OCGoogleDirectionsAPI.h>
+#import <GooglePlaces/GooglePlaces.h>
 
 @interface AppDelegate ()
 
@@ -22,6 +23,7 @@
     
     [GMSServices provideAPIKey:kCarmenAPIKey];
     [OCDirectionsAPIClient provideAPIKey:kCarmenAPIKey];
+    [GMSPlacesClient provideAPIKey:kSuvanAPIKey];
     
     TripDetours *detours = [TripDetours sharedManager];
     
