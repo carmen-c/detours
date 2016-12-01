@@ -38,10 +38,15 @@
     NSString *address = objectDict[@"vicinity"];
     NSString *placeID = objectDict[@"place_id"];
     NSNumber *rating = objectDict[@"rating"];
-    
+    NSString *ratingString;
+    if (rating) {
+        ratingString = [rating stringValue];
+    } else {
+        ratingString = @"N/A";
+    }
     CLLocationCoordinate2D coordinate = [DetourPlace getCoordinates:objectDict[@"geometry"][@"location"]];
     
-    DetourPlace *place = [[DetourPlace alloc] initWithName:name estType:estType address:address placeID:placeID rating:rating coordinates:coordinate];
+    DetourPlace *place = [[DetourPlace alloc] initWithName:name estType:estType address:address placeID:placeID rating:ratingString coordinates:coordinate];
     
     return place;
 }
@@ -58,7 +63,7 @@
 }
 
 
-- (instancetype) initWithName:(NSString *)name estType:(NSString *)estType address:(NSString *)address placeID:(NSString *)placeID rating:(NSNumber *)rating coordinates:(CLLocationCoordinate2D)coordinate {
+- (instancetype) initWithName:(NSString *)name estType:(NSString *)estType address:(NSString *)address placeID:(NSString *)placeID rating:(NSString *)rating coordinates:(CLLocationCoordinate2D)coordinate {
     if (self = [super init]) {
         _name = name;
         _establishmentType = estType;

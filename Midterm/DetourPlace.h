@@ -17,7 +17,7 @@
 
 @property (nonatomic, strong) NSString *placeID;
 
-@property (nonatomic, assign) NSNumber *rating;
+@property (nonatomic, assign) NSString *rating;
 
 @property (nonatomic, assign) float distanceFromBaseRoute;
 @property (nonatomic) CLLocationCoordinate2D coordinate;

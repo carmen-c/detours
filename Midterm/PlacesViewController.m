@@ -15,6 +15,7 @@
 #import "RecommendedDataSourceManager.h"
 #import "WayPointGenerator.h"
 #import "TripDetours.h"
+#import "RecommendationsCell.h"
 
 @interface PlacesViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -75,20 +76,17 @@ static NSString * const kRecommendedPlaceCellIdentifier = @"recommendedPlaceCell
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kRecommendedPlaceCellIdentifier forIndexPath:indexPath];
-    
-    cell.textLabel.textColor =
-    [UIColor colorWithRed:225.0/255.0 green:210.0/255.0 blue:188.0/255.0 alpha:1];
-    cell.accessoryType = UITableViewCellAccessoryDetailButton;
-    CategoryContainer *container = self.arrayOfRecommendations[indexPath.section];
-    
-    DetourPlace *place = container.arrayOfRecommendations[indexPath.row];
-    cell.textLabel.text = place.name;
-    
-    if ([self.selectedDetours containsObject:place]) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
+    RecommendationsCell *cell = [tableView dequeueReusableCellWithIdentifier:kRecommendedPlaceCellIdentifier forIndexPath:indexPath];
+    if (self.arrayOfRecommendations.count > 0) {
+        CategoryContainer *container = self.arrayOfRecommendations[indexPath.section];
+        DetourPlace *place = container.arrayOfRecommendations[indexPath.row];
+        [cell configureCellWithObject:place];
+        
+        if ([self.selectedDetours containsObject:place]) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        } else {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
     }
     
     return cell;
@@ -119,8 +117,7 @@ static NSString * const kRecommendedPlaceCellIdentifier = @"recommendedPlaceCell
 - (IBAction)saveButton:(UIButton *)sender {
     NSArray *arrayOfWayPoints = [WayPointGenerator generateWayPointsWithDetours:self.selectedDetours];
     NSNotificationCenter *nCentre = [NSNotificationCenter defaultCenter];
-    NSDictionary *waypointDict = @{@"wayPoints" : arrayOfWayPoints,
-                                   @"detours" : self.selectedDetours};
+    NSDictionary *waypointDict = @{@"wayPoints" : arrayOfWayPoints};
     NSNotification *notification = [[NSNotification alloc] initWithName:@"WayPoints" object:nil userInfo:waypointDict];
     [nCentre postNotification:notification];
     TripDetours *tripDetours = [TripDetours sharedManager];

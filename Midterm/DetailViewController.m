@@ -15,7 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *detourNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *establishmentTypeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
-@property (weak, nonatomic) IBOutlet UILabel *distancelabel;
 @property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *detourImageView;
 @end
@@ -33,13 +32,7 @@
     self.detourNameLabel.text = self.detour.name;
     self.establishmentTypeLabel.text = [self cleanUpEstType];
     self.addressLabel.text = self.detour.address;
-    self.distancelabel.text = [NSString stringWithFormat:@"distance: %.2f", self.detour.distanceFromBaseRoute];
-    if (self.detour.rating == nil) {
-        self.ratingLabel.text = @"rating: N/A";
-    } else {
-        self.ratingLabel.text = [NSString stringWithFormat:@"rating: %@", self.detour.rating];
-    }
-    
+    self.ratingLabel.text = self.detour.rating;
     [self loadFirstPhotoForPlace:self.detour.placeID];
 }
 
