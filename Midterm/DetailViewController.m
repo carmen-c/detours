@@ -72,6 +72,7 @@
              NSLog(@"Error: %@", [error description]);
          } else {
              self.detourImageView.image = photo;
+             [self.view setNeedsDisplay];
              //self.attributionTextView.attributedText = photoMetadata.attributions;
          }
      }];
