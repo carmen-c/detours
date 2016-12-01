@@ -6,7 +6,9 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -263,21 +265,26 @@
                                 <color key="textColor" red="0.85490196080000003" green="0.78823529410000004" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Jj-zC-Ong">
-                                <rect key="frame" x="38" y="184" width="298" height="298"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Jj-zC-Ong">
+                                <rect key="frame" x="37" y="153" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="6Jj-zC-Ong" secondAttribute="height" multiplier="1:1" id="9qH-62-YyJ"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.2274509804" green="0.15686274510000001" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="VcT-4s-tNY" firstAttribute="top" secondItem="ppQ-64-oss" secondAttribute="bottom" constant="8" id="0Au-i6-hSi"/>
+                            <constraint firstItem="6Jj-zC-Ong" firstAttribute="centerX" secondItem="ZHJ-uX-GFx" secondAttribute="centerX" id="2tV-df-UPW"/>
                             <constraint firstItem="Bk5-4V-qNj" firstAttribute="leading" secondItem="ZHJ-uX-GFx" secondAttribute="leadingMargin" constant="4" id="BtZ-Oo-nnj"/>
                             <constraint firstItem="xwh-sk-FlC" firstAttribute="leading" secondItem="ZHJ-uX-GFx" secondAttribute="leadingMargin" constant="4" id="FsL-cX-tBO"/>
                             <constraint firstItem="mbo-02-jA1" firstAttribute="leading" secondItem="ZHJ-uX-GFx" secondAttribute="leadingMargin" constant="4" id="GGZ-EZ-VCd"/>
+                            <constraint firstItem="6Jj-zC-Ong" firstAttribute="width" secondItem="ZHJ-uX-GFx" secondAttribute="width" multiplier="0.8" id="Ni3-b0-hTd"/>
                             <constraint firstItem="mbo-02-jA1" firstAttribute="top" secondItem="VcT-4s-tNY" secondAttribute="bottom" constant="6" id="OpV-0u-QwS"/>
                             <constraint firstItem="Bk5-4V-qNj" firstAttribute="top" secondItem="xwh-sk-FlC" secondAttribute="bottom" constant="8" id="afd-In-SM8"/>
                             <constraint firstItem="VcT-4s-tNY" firstAttribute="leading" secondItem="ZHJ-uX-GFx" secondAttribute="leadingMargin" constant="4" id="nbi-rD-aAE"/>
                             <constraint firstItem="xwh-sk-FlC" firstAttribute="top" secondItem="mbo-02-jA1" secondAttribute="bottom" constant="8" id="uEJ-1b-MEu"/>
+                            <constraint firstItem="6Jj-zC-Ong" firstAttribute="top" secondItem="Bk5-4V-qNj" secondAttribute="bottom" constant="8" id="x0h-M9-4iZ"/>
                         </constraints>
                     </view>
                     <connections>
@@ -326,7 +333,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Types of Places" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R7w-4x-wMC">
-                                <rect key="frame" x="93" y="28" width="190" height="34"/>
+                                <rect key="frame" x="92.5" y="28" width="190" height="34"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <color key="textColor" red="0.85490196080000003" green="0.78823529410000004" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
