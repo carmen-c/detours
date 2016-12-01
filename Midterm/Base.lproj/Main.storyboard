@@ -259,8 +259,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="place name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VcT-4s-tNY">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="place name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VcT-4s-tNY">
                                 <rect key="frame" x="20" y="28" width="142" height="34"/>
+                                <color key="tintColor" red="0.85490196080000003" green="0.78823529410000004" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <color key="textColor" red="0.85490196080000003" green="0.78823529410000004" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -283,25 +284,26 @@
                                 <color key="textColor" red="0.85490196080000003" green="0.78823529410000004" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y9p-4k-63f">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <color key="backgroundColor" red="0.34509803919999998" green="0.18823529410000001" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="wjj-jy-0h1"/>
+                                </constraints>
+                                <color key="tintColor" red="0.85490196080000003" green="0.78823529410000004" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Back To My Trip">
+                                    <color key="titleColor" red="0.85490196080000003" green="0.78823529410000004" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButton:" destination="YJ6-7W-vXu" eventType="touchUpInside" id="d8z-1i-1Wd"/>
+                                </connections>
+                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Jj-zC-Ong">
                                 <rect key="frame" x="37" y="155" width="300" height="300"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="6Jj-zC-Ong" secondAttribute="height" multiplier="1:1" id="9qH-62-YyJ"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y9p-4k-63f">
-                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
-                                <color key="backgroundColor" red="0.81568627450980391" green="0.75294117647058822" blue="0.65490196078431373" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="wjj-jy-0h1"/>
-                                </constraints>
-                                <state key="normal" title="Back To My Trip">
-                                    <color key="titleColor" red="0.22745098039215686" green="0.15686274509803921" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="backButton:" destination="YJ6-7W-vXu" eventType="touchUpInside" id="d8z-1i-1Wd"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.2274509804" green="0.15686274510000001" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -462,4 +464,5 @@
         <image name="second" width="30" height="30"/>
         <image name="suitcase" width="29" height="29"/>
     </resources>
+    <color key="tintColor" red="0.85490196080000003" green="0.78823529410000004" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
 </document>
