@@ -23,6 +23,8 @@
     [GMSServices provideAPIKey:kCarmenAPIKey];
     [OCDirectionsAPIClient provideAPIKey:kCarmenAPIKey];
     
+    TripDetours *detours = [TripDetours sharedManager];
+    
     return YES;
 }
 

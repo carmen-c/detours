@@ -14,6 +14,7 @@
 #import "CategoryContainer.h"
 #import "RecommendedDataSourceManager.h"
 #import "WayPointGenerator.h"
+#import "TripDetours.h"
 
 @interface PlacesViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -113,8 +114,11 @@ static NSString * const kRecommendedPlaceCellIdentifier = @"recommendedPlaceCell
                                    @"detours" : self.selectedDetours};
     NSNotification *notification = [[NSNotification alloc] initWithName:@"WayPoints" object:nil userInfo:waypointDict];
     [nCentre postNotification:notification];
+    TripDetours *tripDetours = [TripDetours sharedManager];
+    tripDetours.arrayOfDetours = self.selectedDetours;
     [self dismissViewControllerAnimated:YES completion:nil];
     [self.delegate goToMapView];
+    
 }
 
 

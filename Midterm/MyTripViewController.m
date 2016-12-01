@@ -8,6 +8,7 @@
 
 #import "MyTripViewController.h"
 #import "DetourPlace.h"
+#import "TripDetours.h"
 
 @interface MyTripViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -21,18 +22,13 @@ static NSString * const kMyTripCellReuseIdentifier = @"myTripCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSNotificationCenter *nCentre = [NSNotificationCenter defaultCenter];
-    [nCentre addObserver:self selector:@selector(detoursSelected:) name:@"WayPoints" object:nil];
+    TripDetours *tripDetours = [TripDetours sharedManager];
+    self.arrayOfDetours = tripDetours.arrayOfDetours;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void)detoursSelected:(NSNotification *)notification {
-    self.arrayOfDetours = notification.userInfo[@"detours"];
-    [self.tableView reloadData];
 }
 
 #pragma mark - TableView
