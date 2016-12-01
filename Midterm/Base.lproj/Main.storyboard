@@ -412,7 +412,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bhe-F4-Qfu">
-                                <rect key="frame" x="16" y="20" width="30" height="30"/>
+                                <rect key="frame" x="16" y="30" width="30" height="30"/>
                                 <color key="backgroundColor" red="0.34509803919999998" green="0.18823529410000001" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="e6U-2P-7An"/>
@@ -433,7 +433,7 @@
                             <constraint firstItem="HNr-sE-301" firstAttribute="leading" secondItem="jtr-MY-MZO" secondAttribute="leading" id="92C-pj-JeJ"/>
                             <constraint firstItem="X7t-ca-N3b" firstAttribute="leading" secondItem="jtr-MY-MZO" secondAttribute="leading" id="Eo4-iz-gvr"/>
                             <constraint firstItem="R7w-4x-wMC" firstAttribute="centerX" secondItem="jtr-MY-MZO" secondAttribute="centerX" id="GnP-A1-pla"/>
-                            <constraint firstItem="Bhe-F4-Qfu" firstAttribute="top" secondItem="XsX-La-S1H" secondAttribute="bottom" id="GuY-qx-Blk"/>
+                            <constraint firstItem="Bhe-F4-Qfu" firstAttribute="top" secondItem="XsX-La-S1H" secondAttribute="bottom" constant="10" id="GuY-qx-Blk"/>
                             <constraint firstItem="d1U-88-CTK" firstAttribute="top" secondItem="R7w-4x-wMC" secondAttribute="bottom" constant="8" id="Kn8-s0-SYe"/>
                             <constraint firstAttribute="trailing" secondItem="X7t-ca-N3b" secondAttribute="trailing" id="XVy-lA-4nH"/>
                             <constraint firstItem="Ves-Vy-KZc" firstAttribute="top" secondItem="HNr-sE-301" secondAttribute="bottom" id="dBR-JC-1Wu"/>
