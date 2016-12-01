@@ -21,7 +21,7 @@
         NSString *placeType = [parameters.placesOfInterest objectForKey:container.name];
         for (DetourPlace *place in arrayOfDetours) {
             if ([place.establishmentType isEqualToString:placeType]) {
-                [container.arrayOfRecommendations arrayByAddingObject:place];
+                [container.arrayOfRecommendations addObject:place];
             }
         }
     }

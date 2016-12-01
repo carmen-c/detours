@@ -16,7 +16,7 @@
 
 @interface PlacesViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableSet *setOfDetours;
+@property (nonatomic, strong) NSSet *setOfDetours;
 @property (nonatomic, strong) NSArray *arrayOfRecommendations;
 @property (nonatomic, strong) NSMutableArray *selectedDetours;
 
@@ -30,7 +30,7 @@ static NSString * const kRecommendedPlaceCellIdentifier = @"recommendedPlaceCell
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.setOfDetours = [NSMutableSet set];
+    self.setOfDetours = [NSSet set];
     self.selectedDetours = [NSMutableArray array];
     [self findSuggestedLocationsWithPath:self.parameters];
 }
@@ -46,7 +46,7 @@ static NSString * const kRecommendedPlaceCellIdentifier = @"recommendedPlaceCell
     __block int counter = 0;
     for (NSURL *url in arrayOfURLs) {
         [DownloadManager getPlacesJson:url completion:^(NSSet *setOfPlaces) {
-            [self.setOfDetours setByAddingObjectsFromSet:setOfPlaces];
+            self.setOfDetours = [self.setOfDetours setByAddingObjectsFromSet:setOfPlaces];
             counter++;
             if (counter >= arrayOfURLs.count) {
                 self.arrayOfRecommendations = [RecommendedDataSourceManager createDataSourceWithDetours:self.setOfDetours andParameters:parameters];
@@ -69,6 +69,7 @@ static NSString * const kRecommendedPlaceCellIdentifier = @"recommendedPlaceCell
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kRecommendedPlaceCellIdentifier forIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryDetailButton;
     CategoryContainer *container = self.arrayOfRecommendations[indexPath.section];
     DetourPlace *place = container.arrayOfRecommendations[indexPath.row];
     cell.textLabel.text = place.name;
@@ -95,6 +96,7 @@ static NSString * const kRecommendedPlaceCellIdentifier = @"recommendedPlaceCell
     } else {
         [self.selectedDetours addObject:place];
     }
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {

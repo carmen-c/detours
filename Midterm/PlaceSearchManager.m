@@ -33,7 +33,7 @@
     NSString *typeString = [PlaceSearchManager createTypeString:parameters.placeTypeArray];
     
     NSMutableArray *queries = [NSMutableArray array];
-    NSDictionary *queryDict = @{@"location" : coordinateString, @"radius" : @"10000", @"type" : typeString, @"key" : kSuvanAPIKey};
+    NSDictionary *queryDict = @{@"location" : coordinateString, @"radius" : @"1000", @"type" : typeString, @"key" : kSuvanAPIKey};
     
     for (NSString *key in queryDict) {
         [queries addObject:[NSURLQueryItem queryItemWithName:key value:queryDict[key]]];
