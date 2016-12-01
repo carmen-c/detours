@@ -16,12 +16,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    NSNotificationCenter *nCentre = [NSNotificationCenter defaultCenter];
+    [nCentre addObserver:self selector:@selector(detoursSelected) name:@"WayPoints" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)detoursSelected {
+    
 }
 
 /*
