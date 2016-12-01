@@ -13,6 +13,7 @@
 #import "SearchPointFilter.h"
 #import "CategoryContainer.h"
 #import "RecommendedDataSourceManager.h"
+#import "WayPointGenerator.h"
 
 @interface PlacesViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -106,8 +107,12 @@ static NSString * const kRecommendedPlaceCellIdentifier = @"recommendedPlaceCell
 
 # pragma mark - Buttons
 - (IBAction)saveButton:(UIButton *)sender {
-    
-    
+    NSArray *arrayOfWayPoints = [WayPointGenerator generateWayPointsWithDetours:self.selectedDetours];
+    NSNotificationCenter *nCentre = [NSNotificationCenter defaultCenter];
+    NSDictionary *waypointDict = @{@"wayPoints" : arrayOfWayPoints,
+                                   @"detours" : self.selectedDetours};
+    NSNotification *notification = [[NSNotification alloc] initWithName:@"WayPoints" object:nil userInfo:waypointDict];
+    [nCentre postNotification:notification];
 }
 
 
