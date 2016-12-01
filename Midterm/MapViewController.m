@@ -93,7 +93,7 @@
     for(int i=1; i< arrayOfWayPoints.count; i += 2){
         CLLocation * coord = [arrayOfWayPoints objectAtIndex:i];
             CLLocationCoordinate2D finalCoord = CLLocationCoordinate2DMake(coord.coordinate.latitude, coord.coordinate.longitude);
-        [self setMarkerAt:finalCoord snippet:@"waypoint" color:[UIColor greenColor]];
+        [self setMarkerAt:finalCoord snippet:@"waypoint" color:[UIColor colorWithRed:133.0/255.0 green:84.0/255.0 blue:99.0/255.0 alpha:1]];
     }
     
     [self.findRoute findRouteWithStart:self.startDestination.text end:self.endDestination.text waypoints:arrayOfWayPoints andCompletion:^(NSMutableArray *array) {
@@ -160,7 +160,7 @@
     GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
     polyline.geodesic = YES;
     polyline.strokeWidth = 5.f;
-    polyline.strokeColor = [UIColor blueColor];
+    polyline.strokeColor = [UIColor colorWithRed:75.0/255.0 green:56.0/255.0 blue:90.0/255.0 alpha:1];
     polyline.map = self.googleMapView;
 }
 
