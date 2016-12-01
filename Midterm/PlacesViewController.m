@@ -113,6 +113,8 @@ static NSString * const kRecommendedPlaceCellIdentifier = @"recommendedPlaceCell
                                    @"detours" : self.selectedDetours};
     NSNotification *notification = [[NSNotification alloc] initWithName:@"WayPoints" object:nil userInfo:waypointDict];
     [nCentre postNotification:notification];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.delegate goToMapView];
 }
 
 

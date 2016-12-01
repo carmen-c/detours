@@ -11,9 +11,17 @@
 #import <CoreLocation/CoreLocation.h>
 #import "SearchParameters.h"
 
+@protocol goToMapView <NSObject>
+
+-(void)goToMapView;
+
+@end
+
+
 @interface PlacesViewController : UIViewController
 
 @property (nonatomic, strong) SearchParameters *parameters;
+@property (nonatomic, weak) id <goToMapView> delegate;
 
 @end
 

@@ -10,7 +10,7 @@
 #import "PlacesViewController.h"
 #import "SearchParameters.h"
 
-@interface PreferencesViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface PreferencesViewController () <UITableViewDelegate, UITableViewDataSource, goToMapView>
 
 @property (weak, nonatomic) IBOutlet UILabel *instructionsLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -36,6 +36,10 @@ static NSString * const kPlacesOfInterestCellIdentifier = @"placesOfInterestCell
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+-(void)goToMapView {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - TableView
@@ -89,6 +93,7 @@ static NSString * const kPlacesOfInterestCellIdentifier = @"placesOfInterestCell
         self.parameters.placeTypeArray = [self addSearchablePlaceTypes];
         PlacesViewController *destinationVC = segue.destinationViewController;
         destinationVC.parameters = self.parameters;
+        destinationVC.delegate = self;
     }
 }
 
