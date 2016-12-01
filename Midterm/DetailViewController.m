@@ -72,6 +72,7 @@
              NSLog(@"Error: %@", [error description]);
          } else {
              self.detourImageView.image = photo;
+             self.detourImageView.contentMode = UIViewContentModeScaleAspectFit;
              [self.view setNeedsDisplay];
              //self.attributionTextView.attributedText = photoMetadata.attributions;
          }
