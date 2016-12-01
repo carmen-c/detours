@@ -16,7 +16,7 @@
     
     for (DetourPlace *place in arrayOfDetours) {
         CLLocation *location = [[CLLocation alloc] initWithCoordinate:place.coordinate altitude:0 horizontalAccuracy:0 verticalAccuracy:0 timestamp:[NSDate date]];
-        [result addObject:@"via"];
+        [result addObject:@"via:"];
         [result addObject:location];
     }
     return result;
