@@ -39,6 +39,10 @@
     if (self.locationManager == nil) {
         [self createLocationManager];
     }
+    
+    NSNotificationCenter *nCenter = [NSNotificationCenter defaultCenter];
+    [nCenter addObserver:self selector:@selector(redrawRouteWithWaypoints:) name:@"WayPoints" object:nil];
+    
 }
 
 #pragma mark - buttons
@@ -53,21 +57,6 @@
     [self.endDestination resignFirstResponder];
 }
 
-
--(void)getRoute{
-    [self.findRoute findRouteWithStart:self.startDestination.text end:self.endDestination.text andCompletion:^(NSMutableArray *array) {
-        
-        self.pathToDisplay = [array objectAtIndex:0];
-        self.parameters.path = self.pathToDisplay;
-        CLLocationCoordinate2D coordinate = ((CLLocation *)[array objectAtIndex:1]).coordinate;
-        [self drawlineWithPath:self.pathToDisplay];
-        [self focusMapToShowAllMarkers:self.pathToDisplay];
-        [self setEndMarkerAt:coordinate];
-    }];
-    
-}
-
-
 - (IBAction)recommendedPlacesButton:(id)sender {
     [self performSegueWithIdentifier:@"showPlaces" sender:sender];
 }
@@ -81,6 +70,41 @@
     }
 }
 
+#pragma mark - Draw Route
+
+-(void)getRoute{
+    [self.findRoute findRouteWithStart:self.startDestination.text end:self.endDestination.text waypoints:nil andCompletion:^(NSMutableArray *array) {
+        
+        self.pathToDisplay = [array objectAtIndex:0];
+        self.parameters.path = self.pathToDisplay;
+        CLLocationCoordinate2D coordinate = ((CLLocation *)[array objectAtIndex:1]).coordinate;
+        [self drawlineWithPath:self.pathToDisplay];
+        [self focusMapToShowAllMarkers:self.pathToDisplay];
+        [self setEndMarkerAt:coordinate];
+    }];
+    
+}
+
+-(void)redrawRouteWithWaypoints:(NSNotification *)waypoints{
+    
+    NSArray *arrayOfWayPoints = [waypoints.userInfo valueForKey:@"wayPoints"];
+    for(int i=1; i< arrayOfWayPoints.count; i += 2){
+        CLLocation * coord = [arrayOfWayPoints objectAtIndex:i];
+            CLLocationCoordinate2D finalCoord = CLLocationCoordinate2DMake(coord.coordinate.latitude, coord.coordinate.longitude);
+        [self setWayMarkerAt:finalCoord];
+    }
+    
+    
+    [self.findRoute findRouteWithStart:self.startDestination.text end:self.endDestination.text waypoints:arrayOfWayPoints andCompletion:^(NSMutableArray *array) {
+        
+        self.pathToDisplay = [array objectAtIndex:0];
+        self.parameters.path = self.pathToDisplay;
+        CLLocationCoordinate2D coordinate = ((CLLocation *)[array objectAtIndex:1]).coordinate;
+        [self drawlineWithPath:self.pathToDisplay];
+        [self focusMapToShowAllMarkers:self.pathToDisplay];
+        [self setEndMarkerAt:coordinate];
+    }];
+}
 
 #pragma mark - find current location
 

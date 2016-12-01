@@ -7,26 +7,18 @@
 //
 
 #import "FindRoute.h"
+#import "WayPointGenerator.h"
 #import <OCGoogleDirectionsAPI/OCGoogleDirectionsAPI.h>
 
 @implementation FindRoute
 
-#pragma mark - Waypoints
-
-//-(void)waypoints{
-//CLLocation *secondLocation = [[CLLocation alloc] initWithLatitude:37.7422688 longitude:-122.4263441];
-//NSArray *waypointsArray = @[@"via:", secondLocation];
-//[self setWayMarkerAt:CLLocationCoordinate2DMake(secondLocation.coordinate.latitude, secondLocation.coordinate.longitude)];
-//}
-
-
 #pragma mark - find route
 
--(void)findRouteWithStart:(NSString *)start end:(NSString *)end andCompletion:(void (^)(NSMutableArray *array))completion {
+-(void)findRouteWithStart:(NSString *)start end:(NSString *)end waypoints:(NSArray *)waypoints andCompletion:(void (^)(NSMutableArray *array))completion {
     
     OCDirectionsRequest *request = [OCDirectionsRequest requestWithOriginString:start andDestinationString:end];
     request.waypointsOptimise = YES;
-    // request.waypoints = waypointsArray;
+     request.waypoints = waypoints;
     
     OCDirectionsAPIClient *client = [OCDirectionsAPIClient new];
     [client directions:request response:^(OCDirectionsResponse *response, NSError *error) {

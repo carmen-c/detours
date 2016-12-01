@@ -12,6 +12,6 @@
 @interface FindRoute : NSObject
 
 @property (nonatomic) GMSPath *initialPath;
--(void)findRouteWithStart:(NSString *)start end:(NSString *)end andCompletion:(void (^)(NSMutableArray *array))completion;
+-(void)findRouteWithStart:(NSString *)start end:(NSString *)end waypoints:(NSArray *)waypoints andCompletion:(void (^)(NSMutableArray *array))completion;
 
 @end
