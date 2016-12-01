@@ -35,6 +35,11 @@ static NSString * const kRecommendedPlaceCellIdentifier = @"recommendedPlaceCell
     [self findSuggestedLocationsWithPath:self.parameters];
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 #pragma mark - Gather Data
 
 -(void)findSuggestedLocationsWithPath:(SearchParameters *)parameters{
@@ -99,9 +104,11 @@ static NSString * const kRecommendedPlaceCellIdentifier = @"recommendedPlaceCell
     [self.tableView reloadData];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+# pragma mark - Buttons
+- (IBAction)saveButton:(UIButton *)sender {
+    
+    
 }
+
 
 @end
