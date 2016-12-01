@@ -31,11 +31,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self setMapStyle];
     self.setOfDetours = [NSMutableSet set];
-    self.pathToDisplay = nil;
     self.findRoute = [[FindRoute alloc]init];
     self.parameters = [[SearchParameters alloc] init];
     
+    self.pathToDisplay = nil;
     if (self.locationManager == nil) {
         [self createLocationManager];
     }
@@ -146,7 +148,7 @@
 }
 
 
-#pragma mark - map items and zoom
+#pragma mark - map items and format
 
 -(void) setEndMarkerAt:(CLLocationCoordinate2D)location {
     GMSMarker *marker = [[GMSMarker alloc] init];
@@ -177,6 +179,18 @@
     GMSCoordinateBounds* bounds = [[GMSCoordinateBounds alloc]initWithPath:path];
     GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds];
     [self.googleMapView animateWithCameraUpdate:update];
+}
+
+-(void)setMapStyle{
+    NSBundle *mainBundle = [NSBundle mainBundle];
+    NSURL *styleUrl = [mainBundle URLForResource:@"style" withExtension:@"json"];
+    NSError *error;
+    
+    GMSMapStyle *style = [GMSMapStyle styleWithContentsOfFileURL:styleUrl error:&error];
+    if (!style) {
+        NSLog(@"The style definition could not be loaded: %@", error);
+    }
+    self.googleMapView.mapStyle = style;
 }
 
 @end
