@@ -18,6 +18,7 @@
         NSString *coordinateString = [NSString stringWithFormat:@"%@,%@", @(coordinate.latitude), @(coordinate.longitude)];
         [array addObject:coordinateString];
     }
+    
     return array;
 }
 
