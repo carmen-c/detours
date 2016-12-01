@@ -82,7 +82,7 @@
         CLLocationCoordinate2D coordinate = ((CLLocation *)[array objectAtIndex:1]).coordinate;
         [self drawlineWithPath:self.pathToDisplay];
         [self focusMapToShowAllMarkers:self.pathToDisplay];
-        [self setEndMarkerAt:coordinate];
+        [self setMarkerAt:coordinate snippet:@"Destination" color:[UIColor redColor]];
     }];
     
 }
@@ -93,9 +93,8 @@
     for(int i=1; i< arrayOfWayPoints.count; i += 2){
         CLLocation * coord = [arrayOfWayPoints objectAtIndex:i];
             CLLocationCoordinate2D finalCoord = CLLocationCoordinate2DMake(coord.coordinate.latitude, coord.coordinate.longitude);
-        [self setWayMarkerAt:finalCoord];
+        [self setMarkerAt:finalCoord snippet:@"waypoint" color:[UIColor greenColor]];
     }
-    
     
     [self.findRoute findRouteWithStart:self.startDestination.text end:self.endDestination.text waypoints:arrayOfWayPoints andCompletion:^(NSMutableArray *array) {
         
@@ -104,7 +103,7 @@
         CLLocationCoordinate2D coordinate = ((CLLocation *)[array objectAtIndex:1]).coordinate;
         [self drawlineWithPath:self.pathToDisplay];
         [self focusMapToShowAllMarkers:self.pathToDisplay];
-        [self setEndMarkerAt:coordinate];
+        [self setMarkerAt:coordinate snippet:@"Destination" color:[UIColor redColor]];
     }];
 }
 
@@ -131,12 +130,10 @@
                                                             longitude:current.coordinate.longitude
                                                                  zoom:17.0];
     [self.googleMapView animateToCameraPosition:camera];
-    GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = CLLocationCoordinate2DMake(current.coordinate.latitude, current.coordinate.longitude);
-    marker.snippet = @"Your Current Location";
-    marker.map = self.googleMapView;
+    CLLocationCoordinate2D currentCoordinates = CLLocationCoordinate2DMake(current.coordinate.latitude, current.coordinate.longitude);
+    [self setMarkerAt:currentCoordinates snippet:@"Your Current Location" color:[UIColor redColor]];
     
-    [[GMSGeocoder geocoder] reverseGeocodeCoordinate:marker.position completionHandler:^(GMSReverseGeocodeResponse* response, NSError* error) {
+    [[GMSGeocoder geocoder] reverseGeocodeCoordinate:currentCoordinates completionHandler:^(GMSReverseGeocodeResponse* response, NSError* error) {
         
     GMSAddress* addressObj = [response firstResult];
     NSString *currentLocation = [NSString stringWithFormat:@"%@, %@, %@, %@, %@", addressObj.thoroughfare, addressObj.locality, addressObj.administrativeArea, addressObj.country, addressObj.postalCode];
@@ -150,20 +147,12 @@
 
 #pragma mark - map items and format
 
--(void) setEndMarkerAt:(CLLocationCoordinate2D)location {
+-(void)setMarkerAt:(CLLocationCoordinate2D)location snippet:(NSString*)snippet color:(UIColor*)iconColor {
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.position = location;
-    marker.snippet = @"Destination";
+    marker.snippet = snippet;
+    marker.icon = [GMSMarker markerImageWithColor:iconColor];
     marker.appearAnimation = kGMSMarkerAnimationPop;
-    marker.map = self.googleMapView;
-}
-
--(void) setWayMarkerAt:(CLLocationCoordinate2D)location {
-    GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = location;
-    marker.snippet = @"WAYPOINT";
-    marker.appearAnimation = kGMSMarkerAnimationPop;
-    marker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
     marker.map = self.googleMapView;
 }
 

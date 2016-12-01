@@ -12,7 +12,5 @@
 #import <CoreLocation/CoreLocation.h>
 
 @interface MapViewController : UIViewController <GMSMapViewDelegate>
-
-
 @end
 
