@@ -271,14 +271,30 @@
                                     <constraint firstAttribute="width" secondItem="6Jj-zC-Ong" secondAttribute="height" multiplier="1:1" id="9qH-62-YyJ"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y9p-4k-63f">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <color key="backgroundColor" red="0.81568627450980391" green="0.75294117647058822" blue="0.65490196078431373" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="wjj-jy-0h1"/>
+                                </constraints>
+                                <state key="normal" title="Back To My Trip">
+                                    <color key="titleColor" red="0.22745098039215686" green="0.15686274509803921" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButton:" destination="YJ6-7W-vXu" eventType="touchUpInside" id="d8z-1i-1Wd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.2274509804" green="0.15686274510000001" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="VcT-4s-tNY" firstAttribute="top" secondItem="ppQ-64-oss" secondAttribute="bottom" constant="8" id="0Au-i6-hSi"/>
                             <constraint firstItem="6Jj-zC-Ong" firstAttribute="centerX" secondItem="ZHJ-uX-GFx" secondAttribute="centerX" id="2tV-df-UPW"/>
                             <constraint firstItem="Bk5-4V-qNj" firstAttribute="leading" secondItem="ZHJ-uX-GFx" secondAttribute="leadingMargin" constant="4" id="BtZ-Oo-nnj"/>
+                            <constraint firstItem="12g-GJ-cZU" firstAttribute="top" secondItem="y9p-4k-63f" secondAttribute="bottom" id="Fpc-da-UUM"/>
                             <constraint firstItem="xwh-sk-FlC" firstAttribute="leading" secondItem="ZHJ-uX-GFx" secondAttribute="leadingMargin" constant="4" id="FsL-cX-tBO"/>
                             <constraint firstItem="mbo-02-jA1" firstAttribute="leading" secondItem="ZHJ-uX-GFx" secondAttribute="leadingMargin" constant="4" id="GGZ-EZ-VCd"/>
+                            <constraint firstItem="y9p-4k-63f" firstAttribute="leading" secondItem="ZHJ-uX-GFx" secondAttribute="leading" id="GlX-go-VEF"/>
+                            <constraint firstAttribute="trailing" secondItem="y9p-4k-63f" secondAttribute="trailing" id="Mlo-z2-p03"/>
                             <constraint firstItem="6Jj-zC-Ong" firstAttribute="width" secondItem="ZHJ-uX-GFx" secondAttribute="width" multiplier="0.8" id="Ni3-b0-hTd"/>
                             <constraint firstItem="mbo-02-jA1" firstAttribute="top" secondItem="VcT-4s-tNY" secondAttribute="bottom" constant="6" id="OpV-0u-QwS"/>
                             <constraint firstItem="Bk5-4V-qNj" firstAttribute="top" secondItem="xwh-sk-FlC" secondAttribute="bottom" constant="8" id="afd-In-SM8"/>

@@ -42,6 +42,9 @@
     [self loadFirstPhotoForPlace:self.detour.placeID];
 }
 
+- (IBAction)backButton:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 #pragma mark - photo
 
 - (void)loadFirstPhotoForPlace:(NSString *)placeID {

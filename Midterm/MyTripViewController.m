@@ -55,6 +55,7 @@ static NSString * const kShowDetailVCSegueIdentifier = @"showDetail";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.selectedIndexPath = indexPath;
     [self performSegueWithIdentifier:kShowDetailVCSegueIdentifier sender:self];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - Segues
