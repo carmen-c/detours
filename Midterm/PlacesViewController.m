@@ -110,6 +110,11 @@ static NSString * const kRecommendedPlaceCellIdentifier = @"recommendedPlaceCell
     [self.tableView reloadData];
 }
 
+-(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section{
+    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView*)view;
+    [header.textLabel setTextColor:[UIColor colorWithRed:225.0/255.0 green:210.0/255.0 blue:188.0/255.0 alpha:1]];
+}
+
 # pragma mark - Buttons
 - (IBAction)saveButton:(UIButton *)sender {
     NSArray *arrayOfWayPoints = [WayPointGenerator generateWayPointsWithDetours:self.selectedDetours];

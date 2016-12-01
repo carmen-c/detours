@@ -50,6 +50,8 @@ static NSString * const kPlacesOfInterestCellIdentifier = @"placesOfInterestCell
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kPlacesOfInterestCellIdentifier];
+    cell.textLabel.textColor =
+    [UIColor colorWithRed:225.0/255.0 green:210.0/255.0 blue:188.0/255.0 alpha:1];
     NSArray *arrayOfKeys = [self.placesOfInterest allKeys];
     arrayOfKeys = [arrayOfKeys sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     NSString *cellTitle = arrayOfKeys[indexPath.row];
