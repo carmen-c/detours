@@ -1,0 +1,7 @@
+
+*.lock
+Pods/
+Podfile
+/Midterm.xcworkspace
+/Midterm/Constants.h
+/Midterm/Constants.m
