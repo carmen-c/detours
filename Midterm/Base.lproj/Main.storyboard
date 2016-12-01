@@ -197,7 +197,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3mE-qr-7Vt" id="Sap-po-v5w">
-                                            <rect key="frame" x="0.0" y="0.0" width="308" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="308" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.34509803919999998" green="0.18823529410000001" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
@@ -218,8 +218,8 @@
                                     <action selector="saveButton:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="qKD-Rn-iox"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Potential Detours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ql7-Nn-rAS">
-                                <rect key="frame" x="84" y="28" width="207" height="34"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recommendations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ql7-Nn-rAS">
+                                <rect key="frame" x="73" y="28" width="229" height="34"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <color key="textColor" red="0.85490196080000003" green="0.78823529410000004" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -411,10 +411,20 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bhe-F4-Qfu">
-                                <rect key="frame" x="0.0" y="11" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bhe-F4-Qfu">
+                                <rect key="frame" x="16" y="20" width="30" height="30"/>
+                                <color key="backgroundColor" red="0.34509803919999998" green="0.18823529410000001" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="e6U-2P-7An"/>
+                                    <constraint firstAttribute="height" constant="30" id="nVz-5b-gvx"/>
+                                </constraints>
+                                <color key="tintColor" red="0.85490196080000003" green="0.78823529410000004" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="x">
+                                    <color key="titleColor" red="0.85490196080000003" green="0.78823529410000004" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButton:" destination="oUI-Zt-Z0H" eventType="touchUpInside" id="MEe-zf-3FC"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.2274509804" green="0.15686274510000001" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -423,6 +433,7 @@
                             <constraint firstItem="HNr-sE-301" firstAttribute="leading" secondItem="jtr-MY-MZO" secondAttribute="leading" id="92C-pj-JeJ"/>
                             <constraint firstItem="X7t-ca-N3b" firstAttribute="leading" secondItem="jtr-MY-MZO" secondAttribute="leading" id="Eo4-iz-gvr"/>
                             <constraint firstItem="R7w-4x-wMC" firstAttribute="centerX" secondItem="jtr-MY-MZO" secondAttribute="centerX" id="GnP-A1-pla"/>
+                            <constraint firstItem="Bhe-F4-Qfu" firstAttribute="top" secondItem="XsX-La-S1H" secondAttribute="bottom" id="GuY-qx-Blk"/>
                             <constraint firstItem="d1U-88-CTK" firstAttribute="top" secondItem="R7w-4x-wMC" secondAttribute="bottom" constant="8" id="Kn8-s0-SYe"/>
                             <constraint firstAttribute="trailing" secondItem="X7t-ca-N3b" secondAttribute="trailing" id="XVy-lA-4nH"/>
                             <constraint firstItem="Ves-Vy-KZc" firstAttribute="top" secondItem="HNr-sE-301" secondAttribute="bottom" id="dBR-JC-1Wu"/>
@@ -431,6 +442,7 @@
                             <constraint firstItem="d1U-88-CTK" firstAttribute="leading" secondItem="jtr-MY-MZO" secondAttribute="leadingMargin" id="gWM-bM-Ie1"/>
                             <constraint firstItem="X7t-ca-N3b" firstAttribute="top" secondItem="d1U-88-CTK" secondAttribute="bottom" constant="8" id="h76-w9-QME"/>
                             <constraint firstItem="HNr-sE-301" firstAttribute="top" secondItem="X7t-ca-N3b" secondAttribute="bottom" id="u7b-w2-1de"/>
+                            <constraint firstItem="Bhe-F4-Qfu" firstAttribute="leading" secondItem="jtr-MY-MZO" secondAttribute="leadingMargin" id="uKJ-Jb-5U9"/>
                         </constraints>
                     </view>
                     <connections>

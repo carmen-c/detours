@@ -90,6 +90,10 @@ static NSString * const kPlacesOfInterestCellIdentifier = @"placesOfInterestCell
     }
 }
 
+- (IBAction)cancelButton:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:kShowListOfDetoursIdentifier]) {
         self.parameters.placeTypeArray = [self addSearchablePlaceTypes];
