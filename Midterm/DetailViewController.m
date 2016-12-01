@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *distancelabel;
 @property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *detourImageView;
-@property (nonatomic) DetourPlace *detour;
 @end
 
 @implementation DetailViewController

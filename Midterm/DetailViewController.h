@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class DetourPlace;
 @interface DetailViewController : UIViewController
+
+@property (nonatomic, strong) DetourPlace *detour;
 
 @end
