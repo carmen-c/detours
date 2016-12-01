@@ -91,7 +91,7 @@
                             <constraint firstItem="CEP-Fa-awm" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="8" id="yoo-lU-Xy2"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="map" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="endDestination" destination="5Mp-SG-ASk" id="rlU-Oe-HK7"/>
                         <outlet property="googleMapView" destination="2pi-ZW-NjT" id="jww-iK-Jik"/>
@@ -163,7 +163,7 @@
                             <constraint firstItem="IcN-N4-cuC" firstAttribute="top" secondItem="Z6d-eg-xgY" secondAttribute="top" constant="99" id="xQp-Y1-w6X"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My Trip" image="first" id="PWi-N9-Czo"/>
+                    <tabBarItem key="tabBarItem" title="My Trip" image="suitcase" id="PWi-N9-Czo"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="IcN-N4-cuC" id="zXV-my-WUa"/>
@@ -260,31 +260,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="place name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VcT-4s-tNY">
-                                <rect key="frame" x="20" y="28" width="141.5" height="33.5"/>
+                                <rect key="frame" x="20" y="28" width="142" height="34"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <color key="textColor" red="0.85490196080000003" green="0.78823529410000004" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xwh-sk-FlC">
-                                <rect key="frame" x="20" y="96" width="34" height="20.5"/>
+                                <rect key="frame" x="20" y="97" width="34" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.62745098040000002" green="0.41568627450000001" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bk5-4V-qNj">
-                                <rect key="frame" x="20" y="124.5" width="61.5" height="20.5"/>
+                                <rect key="frame" x="20" y="126" width="62" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.62745098040000002" green="0.41568627450000001" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbo-02-jA1">
-                                <rect key="frame" x="20" y="67.5" width="44.5" height="20.5"/>
+                                <rect key="frame" x="20" y="68" width="45" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.85490196080000003" green="0.78823529410000004" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Jj-zC-Ong">
-                                <rect key="frame" x="37" y="153" width="300" height="300"/>
+                                <rect key="frame" x="37" y="155" width="300" height="300"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="6Jj-zC-Ong" secondAttribute="height" multiplier="1:1" id="9qH-62-YyJ"/>
                                 </constraints>
@@ -368,7 +368,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Types of Places" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R7w-4x-wMC">
-                                <rect key="frame" x="92.5" y="28" width="190" height="34"/>
+                                <rect key="frame" x="93" y="28" width="190" height="34"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <color key="textColor" red="0.85490196080000003" green="0.78823529410000004" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -458,7 +458,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
+        <image name="map" width="29" height="29"/>
         <image name="second" width="30" height="30"/>
+        <image name="suitcase" width="29" height="29"/>
     </resources>
 </document>
