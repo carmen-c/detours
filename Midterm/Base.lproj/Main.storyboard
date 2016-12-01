@@ -96,7 +96,7 @@
         <!--My Trip-->
         <scene sceneID="a08-4e-Twk">
             <objects>
-                <viewController id="pIk-u6-bQz" sceneMemberID="viewController">
+                <viewController id="pIk-u6-bQz" customClass="MyTripViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="m9j-do-HaQ"/>
                         <viewControllerLayoutGuide type="bottom" id="mHN-EG-BI2"/>
@@ -109,7 +109,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="AYi-bu-k77">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="myTripCell" id="AYi-bu-k77">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AYi-bu-k77" id="zZC-ns-Z2I">
@@ -118,6 +118,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="pIk-u6-bQz" id="6Dv-oR-N6l"/>
+                                    <outlet property="delegate" destination="pIk-u6-bQz" id="6ga-OE-iTa"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -131,6 +135,7 @@
                     <tabBarItem key="tabBarItem" title="My Trip" image="first" id="PWi-N9-Czo"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="tableView" destination="IcN-N4-cuC" id="zXV-my-WUa"/>
                         <segue destination="YJ6-7W-vXu" kind="show" id="6wg-Mn-M4K"/>
                     </connections>
                 </viewController>

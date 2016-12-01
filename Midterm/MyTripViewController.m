@@ -7,17 +7,22 @@
 //
 
 #import "MyTripViewController.h"
+#import "DetourPlace.h"
 
-@interface MyTripViewController ()
+@interface MyTripViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSArray *arrayOfDetours;
 
 @end
 
 @implementation MyTripViewController
 
+static NSString * const kMyTripCellReuseIdentifier = @"myTripCell";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSNotificationCenter *nCentre = [NSNotificationCenter defaultCenter];
-    [nCentre addObserver:self selector:@selector(detoursSelected) name:@"WayPoints" object:nil];
+    [nCentre addObserver:self selector:@selector(detoursSelected:) name:@"WayPoints" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -25,18 +30,24 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)detoursSelected {
+-(void)detoursSelected:(NSNotification *)notification {
+    self.arrayOfDetours = notification.userInfo[@"detours"];
+    [self.tableView reloadData];
+}
+
+#pragma mark - TableView
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.arrayOfDetours.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kMyTripCellReuseIdentifier forIndexPath:indexPath];
     
+    DetourPlace *place = self.arrayOfDetours[indexPath.row];
+    cell.textLabel.text = place.name;
+    
+    return cell;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
