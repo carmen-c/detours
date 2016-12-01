@@ -76,8 +76,12 @@ static NSString * const kRecommendedPlaceCellIdentifier = @"recommendedPlaceCell
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kRecommendedPlaceCellIdentifier forIndexPath:indexPath];
+    
+    cell.textLabel.textColor =
+    [UIColor colorWithRed:225.0/255.0 green:210.0/255.0 blue:188.0/255.0 alpha:1];
     cell.accessoryType = UITableViewCellAccessoryDetailButton;
     CategoryContainer *container = self.arrayOfRecommendations[indexPath.section];
+    
     DetourPlace *place = container.arrayOfRecommendations[indexPath.row];
     cell.textLabel.text = place.name;
     
