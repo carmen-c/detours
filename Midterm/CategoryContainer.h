@@ -11,7 +11,7 @@
 @interface CategoryContainer : NSObject
 
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSArray *arrayOfRecommendations;
+@property (nonatomic, strong) NSMutableArray *arrayOfRecommendations;
 
 -(instancetype)initWithName:(NSString *)name;
 

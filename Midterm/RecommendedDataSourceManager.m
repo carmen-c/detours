@@ -47,21 +47,4 @@
     return result;
 }
 
-
-
-/*
- NSArray *arrayOfPlaceTypes = self.parameters.placeTypeArray;
- NSMutableArray *arrayOfHeaderTitles = [[NSMutableArray alloc] init];
- NSArray *arrayOfKeys = [self.parameters.placesOfInterest allKeys];
- for (NSString *key in arrayOfKeys) {
- if ([arrayOfPlaceTypes containsObject:[self.parameters.placesOfInterest valueForKey:key]]) {
- [arrayOfHeaderTitles addObject:key];
- }
- }
- 
- NSArray *arrayOfSortedHeaderTitles = arrayOfHeaderTitles;
- arrayOfSortedHeaderTitles = [arrayOfSortedHeaderTitles sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
- NSString *headerTitle = arrayOfSortedHeaderTitles[section];
- */
-
 @end

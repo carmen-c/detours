@@ -32,7 +32,7 @@ static NSString * const kRecommendedPlaceCellIdentifier = @"recommendedPlaceCell
     self.tableView.dataSource = self;
     self.setOfDetours = [NSMutableSet set];
     self.selectedDetours = [NSMutableArray array];
-//    [self findSuggestedLocationsWithPath:self.parameters];
+    [self findSuggestedLocationsWithPath:self.parameters];
 }
 
 #pragma mark - Gather Data

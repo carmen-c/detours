@@ -13,7 +13,7 @@
 -(instancetype)initWithName:(NSString *)name {
     if (self=[super init]) {
         _name = name;
-        _arrayOfRecommendations = @[];
+        _arrayOfRecommendations = [NSMutableArray array];
     }
     return self;
 }
