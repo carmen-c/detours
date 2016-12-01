@@ -7,18 +7,21 @@
 //
 
 #import "MyTripViewController.h"
+#import "DetailViewController.h"
 #import "DetourPlace.h"
 #import "TripDetours.h"
 
 @interface MyTripViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *arrayOfDetours;
+@property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 
 @end
 
 @implementation MyTripViewController
 
 static NSString * const kMyTripCellReuseIdentifier = @"myTripCell";
+static NSString * const kShowDetailVCSegueIdentifier = @"showDetail";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,6 +47,21 @@ static NSString * const kMyTripCellReuseIdentifier = @"myTripCell";
     cell.textLabel.text = place.name;
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.selectedIndexPath = indexPath;
+    [self performSegueWithIdentifier:kShowDetailVCSegueIdentifier sender:self];
+}
+
+#pragma mark - Segues
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:kShowDetailVCSegueIdentifier]) {
+        DetailViewController *detailVC = segue.destinationViewController;
+        DetourPlace *place = self.arrayOfDetours[self.selectedIndexPath.row];
+        detailVC.detour = place;
+    }
 }
 
 @end

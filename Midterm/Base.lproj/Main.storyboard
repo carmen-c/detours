@@ -146,7 +146,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="IcN-N4-cuC" id="zXV-my-WUa"/>
-                        <segue destination="YJ6-7W-vXu" kind="show" identifier="showDetail" id="6wg-Mn-M4K"/>
+                        <segue destination="YJ6-7W-vXu" kind="presentation" identifier="showDetail" id="6wg-Mn-M4K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oqX-IK-iud" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -269,7 +269,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Jj-zC-Ong">
-                                <rect key="frame" x="0.0" y="178" width="375" height="440"/>
+                                <rect key="frame" x="0.0" y="178" width="375" height="489"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.2274509804" green="0.15686274510000001" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
