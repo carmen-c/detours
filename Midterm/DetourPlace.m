@@ -10,6 +10,8 @@
 
 @implementation DetourPlace
 
+
+/// Overide NSObject isEqual method to compare detour placeID instead of the objects
 - (BOOL)isEqual:(id)other
 {
     if (other == self) {
@@ -25,7 +27,7 @@
         }
     }
 }
-
+/// Overide hash value to compare the placeID string
 - (NSUInteger)hash
 {
     return self.placeID.hash;
@@ -50,7 +52,7 @@
     
     return place;
 }
-
+/// Convert NSNumber values from JSON file to CLLocationCoordinate2D
 + (CLLocationCoordinate2D)getCoordinates:(NSDictionary *)coordDict {
     NSNumber *lat = coordDict[@"lat"];
     NSNumber *lon = coordDict[@"lng"];
@@ -62,7 +64,7 @@
     return coordinate;
 }
 
-
+/// Custom initializer to intialize all properties of the object from the JSON response
 - (instancetype) initWithName:(NSString *)name estType:(NSString *)estType address:(NSString *)address placeID:(NSString *)placeID rating:(NSString *)rating coordinates:(CLLocationCoordinate2D)coordinate {
     if (self = [super init]) {
         _name = name;

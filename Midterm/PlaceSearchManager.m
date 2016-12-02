@@ -28,6 +28,7 @@
     return arrayOfURLs;
 }
 
+/// Construct URLs using static URL components
 + (NSURL *)constructURLWithCoordinate:(NSString *)coordinateString andParameters:(SearchParameters *)parameters {
     
     NSString *typeString = [PlaceSearchManager createTypeString:parameters.placeTypeArray];
@@ -49,7 +50,7 @@
     
     return components.URL;
 }
-
+/// Create a string to be used in the URL as types of places the user is interesting
 + (NSString *)createTypeString:(NSArray *)arrayOfPlaceTypes {
     NSMutableString *result = [arrayOfPlaceTypes[0] mutableCopy];
     if (arrayOfPlaceTypes.count > 1) {
