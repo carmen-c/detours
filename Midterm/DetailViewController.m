@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *establishmentTypeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *noImageLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *detourImageView;
 @end
 
@@ -33,6 +34,8 @@
     self.establishmentTypeLabel.text = [self cleanUpEstType];
     self.addressLabel.text = self.detour.address;
     self.ratingLabel.text = self.detour.rating;
+    self.noImageLabel.hidden = NO;
+    self.detourImageView.hidden = YES;
     [self loadFirstPhotoForPlace:self.detour.placeID];
 }
 
@@ -68,6 +71,8 @@
              // TODO: handle the error.
              NSLog(@"Error: %@", [error description]);
          } else {
+             self.noImageLabel.hidden = YES;
+             self.detourImageView.hidden = NO;
              self.detourImageView.image = photo;
              self.detourImageView.contentMode = UIViewContentModeScaleAspectFit;
              [self.view setNeedsDisplay];
