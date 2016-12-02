@@ -12,5 +12,6 @@
 @interface SearchPointFilter : NSObject
 
 + (NSArray *)filterPointsWithPath:(GMSPath *)path;
++ (NSArray *)filterPoints:(GMSPath *)path;
 
 @end
