@@ -49,7 +49,7 @@
                                     <constraint firstAttribute="height" constant="68" id="UXJ-PE-lej"/>
                                     <constraint firstAttribute="width" constant="46" id="sEW-7l-AtR"/>
                                 </constraints>
-                                <state key="normal">
+                                <state key="normal" title="Find Route">
                                     <color key="titleColor" red="0.85490196080000003" green="0.78823529410000004" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -94,6 +94,7 @@
                     <tabBarItem key="tabBarItem" title="Map" image="map" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="endDestination" destination="5Mp-SG-ASk" id="rlU-Oe-HK7"/>
+                        <outlet property="findRouteButton" destination="CEP-Fa-awm" id="wSn-oJ-enX"/>
                         <outlet property="googleMapView" destination="2pi-ZW-NjT" id="jww-iK-Jik"/>
                         <outlet property="startDestination" destination="bMr-SH-iou" id="jNw-IH-XIj"/>
                     </connections>

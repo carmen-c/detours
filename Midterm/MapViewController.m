@@ -24,6 +24,7 @@
 @property (nonatomic) GMSPath *pathToDisplay;
 @property (nonatomic) FindRoute *findRoute;
 @property (nonatomic) SearchParameters *parameters;
+@property (weak, nonatomic) IBOutlet UIButton *findRouteButton;
 
 @end
 
@@ -41,13 +42,19 @@
     if (self.locationManager == nil) {
         [self createLocationManager];
     }
-    
+    [self formatFindRouteButton];
     NSNotificationCenter *nCenter = [NSNotificationCenter defaultCenter];
     [nCenter addObserver:self selector:@selector(redrawRouteWithWaypoints:) name:@"WayPoints" object:nil];
     
 }
 
 #pragma mark - buttons
+
+-(void) formatFindRouteButton {
+    self.findRouteButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.findRouteButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [self.findRouteButton setTitle:@"Find\nRoute" forState:UIControlStateNormal];
+}
 
 - (IBAction)findButton:(id)sender {
     if (self.pathToDisplay !=nil) {
