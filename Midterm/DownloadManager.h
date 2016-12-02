@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ *Handle downloading the JSON from GooglePlacesAPI given a specific URL and SearchParameters
+ */
 @interface DownloadManager : NSObject
 
+/// Download the JSON file and add all potential detour locations to a set of detours
 + (void)getPlacesJson:(NSURL *)url completion:(void (^)(NSSet *setOfPlaces))completion;
 
 @end

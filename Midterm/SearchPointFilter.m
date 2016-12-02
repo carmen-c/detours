@@ -10,19 +10,7 @@
 
 @implementation SearchPointFilter
 
-+(NSArray *)filterPointsWithPath:(GMSPath *)path {
-    NSMutableArray *array = [NSMutableArray array];
-    
-    for (int i = 0; i < path.count; i+=10) {
-        CLLocationCoordinate2D coordinate = [path coordinateAtIndex:i];
-        NSString *coordinateString = [NSString stringWithFormat:@"%@,%@", @(coordinate.latitude), @(coordinate.longitude)];
-        [array addObject:coordinateString];
-    }
-    
-    return array;
-}
-
-
+/// Filter the route coordinates to coordinates >= 4900m away from one another and limit network calls
 +(NSArray *)filterPoints:(GMSPath *)path
 {
     NSMutableArray *result = [NSMutableArray array];
@@ -45,7 +33,7 @@
     return result;
 }
 
-
+/// Converts CLLocationCoordinate to a coordinate string to be used to construct a URL
 + (NSString *)createCoordinateString:(CLLocationCoordinate2D)coordinate
 {
     NSString *result = [NSString stringWithFormat:@"%@,%@", @(coordinate.latitude), @(coordinate.longitude)];

@@ -9,9 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <GoogleMaps/GoogleMaps.h>
 
+/**
+ *Class to filter route coordinates to use in constructing URLs and making network calls
+ */
 @interface SearchPointFilter : NSObject
 
-+ (NSArray *)filterPointsWithPath:(GMSPath *)path;
+/// Filter the route coordinates to coordinates >= 4900m away from one another and limit network calls
 + (NSArray *)filterPoints:(GMSPath *)path;
 
 @end

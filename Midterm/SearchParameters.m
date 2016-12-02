@@ -10,6 +10,7 @@
 
 @implementation SearchParameters
 
+/// Custom init to initialize the dictionary to convert between UI and URL place types
 - (instancetype)init
 {
     self = [super init];

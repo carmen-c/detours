@@ -35,6 +35,7 @@
     self.addressLabel.text = self.detour.address;
     self.ratingLabel.text = self.detour.rating;
     self.noImageLabel.hidden = NO;
+    self.noImageLabel.text = @"loading...";
     self.detourImageView.hidden = YES;
     [self loadFirstPhotoForPlace:self.detour.placeID];
 }

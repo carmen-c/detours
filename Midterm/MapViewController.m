@@ -25,7 +25,7 @@
 @property (nonatomic) FindRoute *findRoute;
 @property (nonatomic) SearchParameters *parameters;
 @property (weak, nonatomic) IBOutlet UIButton *findRouteButton;
-
+@property (nonatomic, strong) UITapGestureRecognizer *tapGR;
 @end
 
 @implementation MapViewController
@@ -45,6 +45,8 @@
     [self formatFindRouteButton];
     NSNotificationCenter *nCenter = [NSNotificationCenter defaultCenter];
     [nCenter addObserver:self selector:@selector(redrawRouteWithWaypoints:) name:@"WayPoints" object:nil];
+    self.tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:self.tapGR];
     
 }
 
@@ -68,6 +70,11 @@
 
 - (IBAction)recommendedPlacesButton:(id)sender {
     [self performSegueWithIdentifier:@"showPlaces" sender:sender];
+}
+
+-(void)dismissKeyboard
+{
+    [self.view endEditing:YES];
 }
 
 #pragma mark - Segue
@@ -117,9 +124,8 @@
 #pragma mark - find current location
 
 -(void)createLocationManager{
-    if (self.locationManager == nil){
     self.locationManager = [[CLLocationManager alloc] init];
-    }
+    
     self.locationManager.delegate = self;
     self.locationManager.distanceFilter = kCLDistanceFilterNone;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -138,7 +144,7 @@
                                                                  zoom:17.0];
     [self.googleMapView animateToCameraPosition:camera];
     CLLocationCoordinate2D currentCoordinates = CLLocationCoordinate2DMake(current.coordinate.latitude, current.coordinate.longitude);
-    [self setMarkerAt:currentCoordinates snippet:@"Your Current Location" color:[UIColor redColor]];
+    
     
     [[GMSGeocoder geocoder] reverseGeocodeCoordinate:currentCoordinates completionHandler:^(GMSReverseGeocodeResponse* response, NSError* error) {
         
@@ -147,7 +153,7 @@
     
     self.startDestination.text = currentLocation;
     }];
-    
+    [self setMarkerAt:currentCoordinates snippet:@"Your Current Location" color:[UIColor redColor]];
     [self.locationManager stopUpdatingLocation];
 }
 
