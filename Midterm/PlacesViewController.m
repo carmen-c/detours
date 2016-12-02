@@ -47,7 +47,7 @@ static NSString * const kRecommendedPlaceCellIdentifier = @"recommendedPlaceCell
 
 -(void)findSuggestedLocationsWithPath:(SearchParameters *)parameters{
     GMSPath *path = parameters.path;
-    NSArray *arrayOfCoordinates = [SearchPointFilter filterPointsWithPath:path];
+    NSArray *arrayOfCoordinates = [SearchPointFilter filterPoints:path];
     
     NSArray *arrayOfURLs = [PlaceSearchManager constructURLWithLocations:arrayOfCoordinates andSearchParameters:parameters];
     

@@ -14,12 +14,12 @@
 {
     if (other == self) {
         return YES;
-    } else if (![super isEqual:other]) {
-        return NO;
+    } else if ([other isKindOfClass:[DetourPlace class]]) {
+        DetourPlace *otherPlace = other;
+        return [self.placeID isEqualToString:otherPlace.placeID];
     } else {
-        if ([other isKindOfClass:[DetourPlace class]]) {
-            DetourPlace *otherPlace = other;
-            return [self.placeID isEqualToString:otherPlace.placeID];
+        if (![super isEqual:other]) {
+            return NO;
         } else {
             return NO;
         }
