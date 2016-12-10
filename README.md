@@ -10,12 +10,12 @@
 <img src="https://cloud.githubusercontent.com/assets/20708577/21070442/b6e37e70-be39-11e6-837e-55fed2424dee.png" width="250"></img>
 
 
-## H2 Features
+## Features
 - Find a route for your road trip
 - Search your route for potential places to visit
 - Lists places you selected, tap for detailed view
 
-## H2 Pods
+## Pods
 - OCGoogleDirectionsAPI
 - GoogleMaps
 - GooglePlaces
