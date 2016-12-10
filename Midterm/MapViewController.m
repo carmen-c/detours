@@ -26,6 +26,7 @@
 @property (nonatomic) SearchParameters *parameters;
 @property (weak, nonatomic) IBOutlet UIButton *findRouteButton;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGR;
+@property (nonatomic) GMSPolyline *polyline;
 @end
 
 @implementation MapViewController
@@ -102,6 +103,8 @@
 }
 
 -(void)redrawRouteWithWaypoints:(NSNotification *)waypoints{
+    self.polyline.map = nil;
+    self.pathToDisplay = nil;
     
     NSArray *arrayOfWayPoints = [waypoints.userInfo valueForKey:@"wayPoints"];
     for(int i=1; i< arrayOfWayPoints.count; i += 2){
@@ -170,11 +173,13 @@
 }
 
 -(void)drawlineWithPath:(GMSPath *)path{
-    GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
-    polyline.geodesic = YES;
-    polyline.strokeWidth = 5.f;
-    polyline.strokeColor = [UIColor colorWithRed:75.0/255.0 green:56.0/255.0 blue:90.0/255.0 alpha:1];
-    polyline.map = self.googleMapView;
+   
+    self.polyline = [GMSPolyline polylineWithPath:path];
+    self.polyline.geodesic = YES;
+    self.polyline.strokeWidth = 5.f;
+    self.polyline.strokeColor = [UIColor colorWithRed:75.0/255.0 green:56.0/255.0 blue:90.0/255.0 alpha:1];
+    self.polyline.map = self.googleMapView;
+
 }
 
 - (void)focusMapToShowAllMarkers:(GMSPath *)path{
