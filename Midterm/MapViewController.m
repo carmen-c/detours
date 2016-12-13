@@ -54,6 +54,7 @@
 #pragma mark - buttons
 
 -(void) formatFindRouteButton {
+    self.findRouteButton.layer.cornerRadius = 10;
     self.findRouteButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.findRouteButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.findRouteButton setTitle:@"Find\nRoute" forState:UIControlStateNormal];
